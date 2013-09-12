@@ -8,12 +8,22 @@ CLI for easier Prestashop development. Actually it's just for the lazy people.
 
 ## Usage
 
+### Overrides
+
+Creates overrides files for controllers and classes.
+
+Usage: `$ shop override controller|class Name [admin]
+
     $ shop override controller|class Name
     # Generates an override for a controller or a class
     # example:
-    $ shop override controller Front
+    $ shop override controller Product
     # or
     $ shop override class Product
+
+    # by default the controller will be placed in override/controllers/admin. To create an override in
+    # override/controllers/admin add the `admin` argument:
+    $ shop override controller AdminProducts
 
 
     $ shop module name
