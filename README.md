@@ -6,7 +6,7 @@ CLI for easier Prestashop development. Actually it's just for the lazy people.
 
 I always use Rakefiles and Makefiles for lots of tasks. With this gem you can use this tasks without having to create the *akefiles.
 
-## Install
+## Installation
 
     $ gem install shop
 
@@ -22,29 +22,35 @@ For some of the task, Shop will need to know the name of the theme you're using.
 
 Creates overrides files for controllers and classes.
 
-Usage: `$ shop override controller|class Name [admin]
+    $ shop override <controller|class> <name> [admin]
 
-    $ shop override controller|class Name
-    # Generates an override for a controller or a class
-    # example:
+Examples:
+
+    # generate a controller
     $ shop override controller Product
-    # or
-    $ shop override class Product
 
     # by default the controller will be placed in override/controllers/admin. To create an override in
     # override/controllers/admin add the `admin` argument:
-    $ shop override controller AdminProducts
+    $ shop override controller AdminProducts admin
+
+    # generate a class
+    $ shop override class Product
 
 ### Modules
 
 Create a module or modules' templates files.
 
+Create a module (with simple module boilerplate):
+
     $ shop module <name>
-    # Generates a boilerplate for a new module
+
     # example:
     $ shop module dinozaure
 
+Create a module template:
+
     $ shop module template <module-name> <hook-name>
+
     # example:
     $ shop module blockcategories blockcategories
 
@@ -55,6 +61,7 @@ Create a module or modules' templates files.
 
     $ shop clean class
     # clean the class index - automatically done when generating a new controller or class
+
 
 ### Help
 
