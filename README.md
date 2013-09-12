@@ -4,6 +4,8 @@
 
 CLI for easier Prestashop development. Actually it's just for the lazy people.
 
+I always use Rakefiles and Makefiles for lots of tasks. With this gem you can use this tasks without having to create the *akefiles.
+
 ## Install
 
     $ gem install shop
