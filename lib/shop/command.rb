@@ -14,6 +14,14 @@ module Shop
 
       def dispatch(command, major, minor)
         # do shit
+        puts 'this seems to work'
       end
+
+      def module()
+      end
+
+      def override()
+      end
+    end
   end
 end

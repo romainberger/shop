@@ -19,3 +19,5 @@ end
 task :install do
   system "gem install #{name}-#{version}.gem"
 end
+
+task :inst => [:build, :install]

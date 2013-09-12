@@ -7,7 +7,7 @@
 Gem::Specification.new do |s|
   s.specification_version = 2 if s.respond_to? :specification_version=
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.rubygems_version = '1.3.5'
+  s.rubygems_version = '2.0.3'
 
   ## Leave these as is they will be modified for you by the rake gemspec task.
   ## If your rubyforge_project name is different, then edit it and comment out
@@ -45,12 +45,25 @@ Gem::Specification.new do |s|
   ## LICENSE files to the extra_rdoc_files list.
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE.md]
+  s.license = 'MIT'
 
   ## List your runtime dependencies here. Runtime dependencies are those
   ## that are needed for an end user to actually USE your code.
 
   ## List your development dependencies here. Development dependencies are
   ## those that are only needed during development
+
+  ## Leave this section as-is. It will be automatically generated from the
+  ## contents of your Git repository via the gemspec task. DO NOT REMOVE
+  ## THE MANIFEST COMMENTS, they are used as delimiters by the task.
+  # = MANIFEST =
+  s.files = %w[
+    bin/shop
+    shop.gemspec
+    lib/shop.rb
+    lib/shop/command.rb
+  ]
+  # = MANIFEST =
 
   ## Test files will be grabbed from the file list. Make sure the path glob
   ## matches what you actually use.
