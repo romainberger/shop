@@ -2,7 +2,7 @@
 
 **Project in early development, not everything is working for now**
 
-CLI for easier Prestashop development. Actually it's just for the lazy people.
+CLI for easier [PrestaShop](http://www.prestashop.com/en/) development. Actually it's just for the lazy people.
 
 I always use Rakefiles and Makefiles for lots of tasks. With this gem you can use this tasks without having to create the *akefiles.
 
