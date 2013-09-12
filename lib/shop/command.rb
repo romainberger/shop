@@ -15,12 +15,26 @@ module Shop
       end
 
       def dispatch(command, major, minor, extra)
+        return init(major)                     if command == 'init'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+      end
+
+      # Init the project
+      def init(name)
+        if name.nil?
+          return puts "Error: Please specify the name of the theme"
+        end
+
+        File.open('.shop', 'w') do |f|
+          f.write(name)
+        end
+
+        done
       end
 
       # Creates a module or a module template
@@ -71,7 +85,7 @@ module Shop
         content = "<?php\n\nclass #{name} extends #{name}Core {\n\n}\n"
 
         if !File.directory?('override')
-          return puts "Be at the root bro"
+          return puts "You need to be at the root of your Prestashop site"
         end
 
         File.open(path, 'w') do |f|

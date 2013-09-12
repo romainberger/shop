@@ -1,5 +1,7 @@
 # Shop
 
+**Project in early development, not everything is working for now**
+
 CLI for easier Prestashop development. Actually it's just for the lazy people.
 
 ## Install
@@ -7,6 +9,12 @@ CLI for easier Prestashop development. Actually it's just for the lazy people.
     $ gem install shop
 
 ## Usage
+
+### Initialization
+
+For some of the task, Shop will need to know the name of the theme you're using. To do that you need to init the project with:
+
+    $ shop init <theme-name>
 
 ### Overrides
 
@@ -25,12 +33,20 @@ Usage: `$ shop override controller|class Name [admin]
     # override/controllers/admin add the `admin` argument:
     $ shop override controller AdminProducts
 
+### Modules
 
-    $ shop module name
+Create a module or modules' templates files.
+
+    $ shop module <name>
     # Generates a boilerplate for a new module
     # example:
     $ shop module dinozaure
 
+    $ shop module template <module-name> <hook-name>
+    # example:
+    $ shop module blockcategories blockcategories
+
+### Cache
 
     $ shop clean cache
     # cleans the cache and compile and stuffs
@@ -38,11 +54,14 @@ Usage: `$ shop override controller|class Name [admin]
     $ shop clean class
     # clean the class index - automatically done when generating a new controller or class
 
+### Help
+
+You can get a list of the available commands with the help:
+
     $ shop help
-    # When you're lost
 
 # Who
 
 By [Romain Berger](http://romainberger.com).
 Ping me at [@romain__berger](http://twitter.com/romain__berger) if you're having issues or create an issue.
-If you become billionaire with a shop made with the help of Shop you owe me a beer.
+If you become billionaire with a shop made with the help of Shop you must buy me a beer.
