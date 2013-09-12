@@ -15,6 +15,7 @@ module Shop
       end
 
       def dispatch(command, major, minor, extra)
+        return newProject(major)               if command == 'new'
         return init(major)                     if command == 'init'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
@@ -22,6 +23,21 @@ module Shop
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+      end
+
+      # Download the framework in the current dir
+      # or a creates a dir if an argument is given
+      def newProject(path)
+        unless path.nil?
+          FileUtils.mkpath(path)
+        end
+
+        print 'Downloading the framework... '
+        url = 'https://github.com/PrestaShop/PrestaShop/archive/master.zip'
+        open('master.zip', 'wb') do |f|
+          f << open(url).read
+        end
+        done
       end
 
       # Init the project
