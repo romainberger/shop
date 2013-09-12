@@ -15,7 +15,7 @@ module Shop
       end
 
       def dispatch(command, major, minor, extra)
-        return shopModule(minor, major, extra) if command == 'module'
+        return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
         return version                         if command == "-v"
@@ -30,8 +30,20 @@ module Shop
           # template
           puts 'create module template'
         else
-          puts 'create module'
+          # create a module
+          if File.directory?("modules/#{major}")
+            return puts "Module #{major} already exists"
+          else
+            FileUtils.mkpath("modules/#{major}")
+            File.open("modules/#{major}/#{major}.php", 'w') do |f|
+              name = major.capitalize
+              content = "<?php\n\nclass #{name} extends Module {\n\n}\n"
+              f.write(content)
+            end
+          end
         end
+
+        done
       end
 
       # Creates an override for controllers and classes

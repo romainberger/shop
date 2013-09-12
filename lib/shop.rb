@@ -2,6 +2,8 @@
 
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
+require 'fileutils'
+
 require 'shop/command'
 
 module Shop
