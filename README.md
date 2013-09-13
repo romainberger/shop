@@ -62,6 +62,20 @@ Create a module template:
     $ shop clean class
     # clean the class index - automatically done when generating a new controller or class
 
+### Jshint
+
+Run jshint on the theme's files.
+
+    $ shop jshint
+
+To run jshint on the theme's files and the modules' files, run it with the `modules` argument:
+
+    $ shop jshint modules
+
+To run jshint on **every** files run it with the `hard` argument (prepare yourself for a crapload of errors):
+
+    $ shop jshint hard
+
 
 ### Help
 
