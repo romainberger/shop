@@ -4,6 +4,15 @@ module Shop
   class Command
     class << self
 
+      # Returns the theme name
+      def theme
+        if File.exists?('.shop')
+          return File.read('.shop')
+        else
+          puts "Project not initialized. Please run `shop init <theme-name`"
+        end
+      end
+
       def execute(*args)
         command = args.shift
         major   = args.shift
@@ -19,6 +28,7 @@ module Shop
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
+        return jshint(major)                   if command == 'jshint'
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
@@ -103,6 +113,24 @@ module Shop
         elsif major == 'index'
           # index
           puts 'clean index'
+        end
+      end
+
+      # Run jshint on the theme files
+      def jshint(major)
+        files = Dir["themes/#{theme}/js/**/*.js"]
+
+        if major == 'modules' || major == 'hard'
+          modules = Dir["modules/**/*.js"]
+          files = files + modules
+        end
+        if major == 'hard'
+          prestashop = Dir["js/**/*.js"]
+          files = files + prestashop
+        end
+
+        files.each do |f|
+          system "jshint #{f}"
         end
       end
 
