@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   ## Make sure your summary is short. The description may be as long
   ## as you like.
-  s.summary     = "Command line interface for easy Prestashop development"
+  s.summary     = "CLI for easy Prestashop development"
   s.description = "Because I'm too lazy to create files and type code"
 
   ## List the primary authors. If there are a bunch of authors, it's probably
