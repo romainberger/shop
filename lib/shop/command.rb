@@ -49,6 +49,9 @@ module Shop
         done
       end
 
+      # Check if the Shop project has been initialized
+      #
+      # Returns a boolean
       def init?
         File.exists?('.shop')
       end
