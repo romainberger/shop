@@ -6,7 +6,7 @@ module Shop
 
       # Returns the theme name
       def theme
-        if File.exists?('.shop')
+        if init?
           return File.read('.shop')
         else
           puts "Project not initialized. Please run `shop init <theme-name`"
@@ -17,7 +17,7 @@ module Shop
         command = args.shift
         major   = args.shift
         minor   = args.shift
-        extra   = args.empty? ? nil : args.join(' ')
+        extra   = args.shift
 
         return help unless command
         dispatch(command, major, minor, extra)
@@ -47,12 +47,29 @@ module Shop
         done
       end
 
+      def init?
+        File.exists?('.shop')
+      end
+
       # Creates a module or a module template
       # prefixed with shop for obvious reasons
       def shopModule(major, minor, extra)
         if major == 'template'
           # template
           puts 'create module template'
+        elsif major == 'css'
+          # css
+          path = "themes/#{theme}/css/modules/#{minor}"
+          FileUtils.mkpath(path) unless File.directory?(path)
+
+          filepath = "#{path}/#{minor}.css"
+
+          if File.exists?(filepath)
+            puts 'File already exists'
+            exit
+          elsif
+            File.open(filepath, 'w') do; end
+          end
         else
           # create a module
           if File.directory?("modules/#{major}")
