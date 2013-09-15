@@ -160,7 +160,23 @@ module Shop
       end
 
       def help
-        puts "Output help"
+        text = %{
+          Shop v.#{Shop::VERSION} -------------------------------
+
+            shop init                              Create a Shop config file
+            shop module <name>                     Creates a new module
+            shop module template <name> <hook>     Creates a template for a given module / hook
+            shop override controller <name>        Creates an override for a controller
+            shop override controller <name> admin  Cretes an override for an admin controller
+            shop override class <name>             Creates an override for a class
+            shop clean
+            shop jshint
+
+          See the complete documentation at:
+          https://github.com/romainberger/shop
+
+        }.gsub(/^ {10}/, '')
+        puts text
       end
     end
   end
