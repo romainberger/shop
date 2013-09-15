@@ -10,6 +10,7 @@ module Shop
           return File.read('.shop')
         else
           puts "Project not initialized. Please run `shop init <theme-name`"
+          exit
         end
       end
 
@@ -37,7 +38,8 @@ module Shop
       # Init the project
       def init(name)
         if name.nil?
-          return puts "Error: Please specify the name of the theme"
+          puts "Error: Please specify the name of the theme"
+          return puts "    $ shop init <theme-name>"
         end
 
         File.open('.shop', 'w') do |f|
@@ -53,7 +55,10 @@ module Shop
 
       # Creates a module or a module template
       # prefixed with shop for obvious reasons
+      #
+      # The project needs to be initialized
       def shopModule(major, minor, extra)
+        theme
         if major == 'template'
           # template
           puts 'create module template'
@@ -155,10 +160,12 @@ module Shop
         puts "✔ Done"
       end
 
+      # Returns the version of Shop
       def version
         puts "Shop #{Shop::VERSION}"
       end
 
+      # Prints all the command available
       def help
         text = %{
           Shop v.#{Shop::VERSION} -------------------------------
