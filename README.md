@@ -111,6 +111,8 @@ When you create a new override for a controller or a class, the class index need
 
 Okay I kinda lied. I still use a Makefile, but only for production servers, as they rarely run gems and I don't necessarily want to install a tool for a limited use (Shop is primarily built for development purpose). But some of these tasks can be usefull on production servers. Shop can generate a Makefile file that will allow you to run some tasks.
 
+**The Makefile task will need the Shop project to be [initialized](https://github.com/romainberger/shop)**
+
 If you already use a Makefile, the tasks will be added to it. If you don't, it will create a Makefile.
 
     $ shop makefile

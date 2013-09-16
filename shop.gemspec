@@ -62,6 +62,7 @@ Gem::Specification.new do |s|
     shop.gemspec
     lib/shop.rb
     lib/shop/command.rb
+    templates/Makefile
   ]
   # = MANIFEST =
 

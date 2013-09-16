@@ -4,6 +4,12 @@ module Shop
   class Command
     class << self
 
+      # Returns the path to the templates directory
+      def template_path
+        path = File.expand_path File.dirname(__FILE__)
+        "#{path}/../../templates"
+      end
+
       def execute(*args)
         command = args.shift
         major   = args.shift
@@ -149,12 +155,19 @@ module Shop
         end
       end
 
+      # Create a Makefile or add some tasks to an existing one
       def makefile
+        content = File.read("#{template_path}/Makefile")
+        content = content.gsub("{{theme}}", "#{theme}")
         if File.exists?("Makefile")
           puts "Add to existing Makefile"
         else
-          puts "Create makefile"
+          File.open("Makefile", "w") do |f|
+            f.write(content)
+          end
         end
+
+        done
       end
 
       def done
