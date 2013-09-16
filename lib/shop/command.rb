@@ -160,7 +160,9 @@ module Shop
         content = File.read("#{template_path}/Makefile")
         content = content.gsub("{{theme}}", "#{theme}")
         if File.exists?("Makefile")
-          puts "Add to existing Makefile"
+          File.open("Makefile", "a") do |f|
+            f.write(content)
+          end
         else
           File.open("Makefile", "w") do |f|
             f.write(content)
