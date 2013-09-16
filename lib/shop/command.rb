@@ -14,6 +14,12 @@ module Shop
         end
       end
 
+      # Returns the path to the templates directory
+      def template_path
+        path = File.expand_path File.dirname(__FILE__)
+        "#{path}/../../templates"
+      end
+
       def execute(*args)
         command = args.shift
         major   = args.shift
@@ -25,14 +31,57 @@ module Shop
       end
 
       def dispatch(command, major, minor, extra)
+        return newProject(major)               if command == 'new'
         return init(major)                     if command == 'init'
+        return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
+        return makefile                        if command == 'makefile'
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+      end
+
+      # Download the framework in the current dir
+      # or a creates a dir if an argument is given
+      def newProject(path)
+        unless path.nil?
+          FileUtils.mkpath(path)
+        else
+          path = "./"
+        end
+
+        puts "Please wait..."
+        print "Downloading the framework... "
+        url = 'https://github.com/PrestaShop/PrestaShop/archive/master.zip'
+        open("master.zip", "wb") do |f|
+          f << open(url).read
+        end
+        done
+
+        # @todo unzip with a ruby way to avoid platform incompatibilities
+        print "Unzip... "
+        system "unzip -q master.zip"
+        done
+
+        print "Copying... "
+        FileUtils.cp_r(Dir["PrestaShop-master/*"], path)
+        done
+
+        print "Cleaning... "
+        # remove useless files
+        File.delete("master.zip")
+        FileUtils.rm_rf("PrestaShop-master")
+
+        done
+      end
+
+      # Runs the Prestashop install cli
+      # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
+      def install
+        # prompt then run the php shit
       end
 
       # Init the project
@@ -141,6 +190,7 @@ module Shop
         end
       end
 
+
       # Run jshint on the theme files
       def jshint(major)
         files = Dir["themes/#{theme}/js/**/*.js"]
@@ -157,6 +207,23 @@ module Shop
         files.each do |f|
           system "jshint #{f}"
         end
+      end
+
+      # Create a Makefile or add some tasks to an existing one
+      def makefile
+        content = File.read("#{template_path}/Makefile")
+        content = content.gsub("{{theme}}", "#{theme}")
+        if File.exists?("Makefile")
+          File.open("Makefile", "a") do |f|
+            f.write(content)
+          end
+        else
+          File.open("Makefile", "w") do |f|
+            f.write(content)
+          end
+        end
+
+        done
       end
 
       def done

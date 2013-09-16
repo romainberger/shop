@@ -3,6 +3,7 @@
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
 require 'fileutils'
+require 'open-uri'
 
 require 'shop/command'
 
