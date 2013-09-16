@@ -17,6 +17,7 @@ module Shop
       def dispatch(command, major, minor, extra)
         return newProject(major)               if command == 'new'
         return init(major)                     if command == 'init'
+        return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
@@ -30,14 +31,39 @@ module Shop
       def newProject(path)
         unless path.nil?
           FileUtils.mkpath(path)
+        else
+          path = "./"
         end
 
-        print 'Downloading the framework... '
+        puts "Please wait..."
+        print "Downloading the framework... "
         url = 'https://github.com/PrestaShop/PrestaShop/archive/master.zip'
-        open('master.zip', 'wb') do |f|
+        open("master.zip", "wb") do |f|
           f << open(url).read
         end
         done
+
+        # @todo unzip with a ruby way to avoid platform incompatibilities
+        print "Unzip... "
+        system "unzip -q master.zip"
+        done
+
+        print "Copying... "
+        FileUtils.cp_r(Dir["PrestaShop-master/*"], path)
+        done
+
+        print "Cleaning... "
+        # remove useless files
+        File.delete("master.zip")
+        FileUtils.rm_rf("PrestaShop-master")
+
+        done
+      end
+
+      # Runs the Prestashop install cli
+      # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
+      def install
+        # prompt then run the php shit
       end
 
       # Init the project
