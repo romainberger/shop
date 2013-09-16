@@ -112,13 +112,23 @@ module Shop
       # Creates a module or a module template
       # prefixed with shop for obvious reasons
       #
-      # @todo use templates
       # The project needs to be initialized
       def shopModule(major, minor, extra)
         theme
         if major == 'template'
-          # template
-          puts 'create module template'
+          path = "themes/#{theme}/modules"
+          FileUtils.mkpath(path) unless File.directory?(path)
+
+          path = "#{path}/#{minor}"
+          FileUtils.mkpath(path) unless File.directory?(path)
+
+          filepath = "#{path}/#{extra}.tpl"
+          if File.exists?(filepath)
+            puts "File already exists"
+            exit
+          else
+            File.open(filepath, "w") do; end
+          end
         elsif major == 'css'
           # css
           path = "themes/#{theme}/css/modules/#{minor}"
@@ -127,10 +137,10 @@ module Shop
           filepath = "#{path}/#{minor}.css"
 
           if File.exists?(filepath)
-            puts 'File already exists'
+            puts "File already exists"
             exit
           elsif
-            File.open(filepath, 'w') do; end
+            File.open(filepath, "w") do; end
           end
         else
           # create a module
@@ -140,7 +150,9 @@ module Shop
             FileUtils.mkpath("modules/#{major}")
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
               name = major.capitalize
-              content = "<?php\n\nclass #{name} extends Module {\n\n}\n"
+              content = File.read("#{template_path}/module.php")
+              content = content.gsub("{{name_capitalize}}", "#{name}")
+              content = content.gsub("{{name}}", "#{major}")
               f.write(content)
             end
           end
