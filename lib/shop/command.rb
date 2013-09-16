@@ -9,7 +9,7 @@ module Shop
         if init?
           return File.read('.shop')
         else
-          puts "Project not initialized. Please run `shop init <theme-name`"
+          puts "Project not initialized. Please run `shop init <theme-name>`"
           exit
         end
       end
@@ -42,6 +42,9 @@ module Shop
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+
+        puts "\nCommand not found"
+        return help
       end
 
       # Download the framework in the current dir
@@ -80,6 +83,7 @@ module Shop
 
       # Runs the Prestashop install cli
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
+      # @todo
       def install
         # prompt then run the php shit
       end
@@ -108,6 +112,7 @@ module Shop
       # Creates a module or a module template
       # prefixed with shop for obvious reasons
       #
+      # @todo use templates
       # The project needs to be initialized
       def shopModule(major, minor, extra)
         theme
@@ -180,6 +185,7 @@ module Shop
       end
 
       # Clean cache or class index
+      # @todo
       def clean(major)
         if major == 'cache'
           # cache
@@ -191,8 +197,9 @@ module Shop
       end
 
 
-      # Run jshint on the theme files
+      # Run jshint
       def jshint(major)
+        theme
         files = Dir["themes/#{theme}/js/**/*.js"]
 
         if major == 'modules' || major == 'hard'
@@ -211,6 +218,7 @@ module Shop
 
       # Create a Makefile or add some tasks to an existing one
       def makefile
+        theme
         content = File.read("#{template_path}/Makefile")
         content = content.gsub("{{theme}}", "#{theme}")
         if File.exists?("Makefile")
@@ -236,6 +244,7 @@ module Shop
       end
 
       # Prints all the command available
+      # @todo
       def help
         text = %{
           Shop v.#{Shop::VERSION} -------------------------------
