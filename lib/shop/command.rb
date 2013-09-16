@@ -21,6 +21,7 @@ module Shop
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
         return clean(major)                    if command == 'clean'
+        return makefile                        if command == 'makefile'
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
@@ -145,6 +146,14 @@ module Shop
         elsif major == 'index'
           # index
           puts 'clean index'
+        end
+      end
+
+      def makefile
+        if File.exists?("Makefile")
+          puts "Add to existing Makefile"
+        else
+          puts "Create makefile"
         end
       end
 
