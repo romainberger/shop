@@ -84,7 +84,7 @@ Creates a module template:
     $ shop module template <module-name> <hook-name>
 
     # example:
-    $ shop module blockcategories blockcategories
+    $ shop module template blockcategories blockcategories
 
 Creates a module css file in your theme:
 
