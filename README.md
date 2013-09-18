@@ -8,8 +8,6 @@ I always use Rakefiles and Makefiles for lots of tasks. With this gem you can us
 
     gem install shop
 
-Shop has been developed tested on OSX. I have no idea if this works on other platforms.
-
 ## Usage
 
 ### New project
@@ -142,7 +140,11 @@ You can get a list of the available commands with the help:
 
     shop help
 
-# Who
+## Compatibility
+
+Shop has been developed and tested on osx. It may not work on platforms other than *nix, particularly the `new` command that uses the unix `unzip` command. I plan on working on rewriting this part with only Ruby so it could work everywhere.
+
+## Who
 
 By [Romain Berger](http://romainberger.com).
 Ping me at [@romain__berger](http://twitter.com/romain__berger) if you're having issues or create an issue.

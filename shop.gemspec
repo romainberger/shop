@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = 'shop'
-  s.version           = '0.1.2'
+  s.version           = '0.1.3'
   s.date              = '2013-03-18'
   s.rubyforge_project = 'shop'
 
@@ -59,6 +59,11 @@ Gem::Specification.new do |s|
   ## THE MANIFEST COMMENTS, they are used as delimiters by the task.
   # = MANIFEST =
   s.files = %w[
+    Gemfile
+    Gemfile.lock
+    LICENSE.md
+    README.md
+    Rakefile
     bin/shop
     shop.gemspec
     lib/shop.rb
