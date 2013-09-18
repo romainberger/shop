@@ -10,7 +10,7 @@ module Shop
         if init?
           return File.read('.shop')
         else
-          puts "Project not initialized. Please run `shop init <theme-name>`"
+          puts "#{red("Error")}: Project not initialized. Please run `shop init <theme-name>`"
           exit
         end
       end
@@ -99,7 +99,7 @@ module Shop
       # Init the project
       def init(name)
         if name.nil?
-          puts "Error: Please specify the name of the theme"
+          puts "#{red("Error:")} Please specify the name of the theme"
           return puts "    $ shop init <theme-name>"
         end
 
@@ -132,7 +132,7 @@ module Shop
 
           filepath = "#{path}/#{extra}.tpl"
           if File.exists?(filepath)
-            puts "File already exists"
+            puts "#{red("Error:")} File already exists"
             exit
           else
             File.open(filepath, "w") do; end
@@ -145,7 +145,7 @@ module Shop
           filepath = "#{path}/#{minor}.css"
 
           if File.exists?(filepath)
-            puts "File already exists"
+            puts "#{red("Error:")} File already exists"
             exit
           elsif
             File.open(filepath, "w") do; end
@@ -194,7 +194,7 @@ module Shop
         content = "<?php\n\nclass #{name} extends #{name}Core {\n\n}\n"
 
         if !File.directory?('override')
-          return puts "You need to be at the root of your Prestashop site"
+          return puts "#{red("Error:")} You need to be at the root of your Prestashop site"
         end
 
         File.open(path, 'w') do |f|
@@ -267,7 +267,7 @@ module Shop
       end
 
       def done
-        puts "✔ Done"
+        puts "#{cyan("✔ Done")}"
       end
 
       # Returns the version of Shop
