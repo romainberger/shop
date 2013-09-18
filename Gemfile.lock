@@ -7,7 +7,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    highline (~> 1.6.19)
+    highline (1.6.19)
 
 PLATFORMS
   ruby
