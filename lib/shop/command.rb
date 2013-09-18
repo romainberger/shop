@@ -85,7 +85,14 @@ module Shop
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
       # @todo
       def install
-        # prompt then run the php shit
+        # check if the framework is already installed
+        if !File.directory?('install-dev')
+          puts "PrestaShop appears to be already installed"
+          exit
+        end
+
+        puts "Preparing installation of PrestaShop"
+
       end
 
       # Init the project
@@ -202,10 +209,18 @@ module Shop
         if major == 'cache'
           # cache
           puts 'clean cache'
-        elsif major == 'index'
-          # index
-          puts 'clean index'
+        elsif major == 'class'
+          print "Cleaning class index... "
+          index = "cache/class_index.php"
+          if File.exists?(index)
+            File.delete(index)
+          end
+          File.open(index, "w") do; end
+          # the file needs to be chmod'ed to 666
+          File.chmod(0666, index)
         end
+
+        done
       end
 
 
