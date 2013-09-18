@@ -91,7 +91,33 @@ module Shop
           exit
         end
 
-        puts "Preparing installation of PrestaShop"
+        entry = Hash.new
+
+        entry[:domain]      = ask('Domain: ')
+        entry[:db_name]     = ask('Database name: ')
+        entry[:db_server]   = ask('Database server: ') { |q| q.default = 'localhost' }
+        entry[:db_user]     = ask('Database user: ') { |q| q.default = 'root' }
+        entry[:db_password] = ask('Database password: ') { |q| q.default = '' }
+        entry[:country]     = ask('Country: ') { |q| q.default = 'fr' }
+        entry[:firstname]   = ask('Firstname: ')
+        entry[:lastname]    = ask('Lastname: ')
+        entry[:password]    = ask('Password: ') { |q| q.default = '0123456789' }
+        entry[:email]       = ask('Email: ')
+        entry[:newsletter]  = 0 # the PS default is to 1, but nobody wants spam
+
+        command = "php install-dev/index_cli.php "
+        command << "--domain=#{entry[:domain]} "
+        command << "--db_name=#{entry[:db_name]} "
+        command << "--db_server=#{entry[:db_server]} "
+        command << "--db_user=#{entry[:db_user]} "
+        command << "--db_password=#{entry[:db_password]} "
+        command << "--country=#{entry[:country]} "
+        command << "--firstname=#{entry[:firstname]} "
+        command << "--lastname=#{entry[:lastname]} "
+        command << "--password=#{entry[:password]} "
+        command << "--email=#{entry[:email]} "
+        command << "--newsletter=#{entry[:newsletter]} "
+
 
       end
 
