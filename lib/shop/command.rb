@@ -204,11 +204,15 @@ module Shop
       end
 
       # Clean cache or class index
-      # @todo
       def clean(major)
         if major == 'cache'
-          # cache
-          puts 'clean cache'
+          theme
+          files = Dir["themes/#{theme}/cache/*.css"]
+          files = files + Dir["themes/#{theme}/cache/*.js"]
+
+          files.each do |f|
+            File.delete(f)
+          end
         elsif major == 'class'
           print "Cleaning class index... "
           index = "cache/class_index.php"

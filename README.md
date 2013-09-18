@@ -10,7 +10,7 @@ I always use Rakefiles and Makefiles for lots of tasks. With this gem you can us
 
     $ gem install shop
 
-Shop has been developed on OSX and tested on OSX. I have no idea if this works on other platforms.
+Shop has been developed tested on OSX. I have no idea if this works on other platforms.
 
 ## Usage
 
@@ -95,10 +95,10 @@ Creates a module css file in your theme:
 
 ### Cache
 
-Cleans the css, js and smarty caches.
+Cleans the css and js caches.
 
     $ shop clean cache
-    # cleans the cache and compile and stuffs
+    # cleans the css and js caches
 
 When you create a new override for a controller or a class, the class index needs to be rewritten. You can call this task
 
