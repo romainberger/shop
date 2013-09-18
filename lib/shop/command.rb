@@ -281,16 +281,22 @@ module Shop
           Shop v.#{Shop::VERSION} -------------------------------
 
             shop init                              Creates a Shop config file
+
             shop module <name>                     Creates a new module
             shop module template <name> <hook>     Creates a template for a given module / hook
             shop module css <name>                 Creates an override for a module css
+
             shop override controller <name>        Creates an override for a controller
-            shop override controller <name> admin  Cretes an override for an admin controller
+            shop override controller <name> admin  Creates an override for an admin controller
             shop override class <name>             Creates an override for a class
-            shop clean
+
+            shop clean cache                       Cleans the css and js caches
+            shop clean class                       Cleans the class index
+
             shop jshint                            Run jshint on the theme files
             shop jshint modules                    Run jshint on the theme and modules files
             shop jshint hard                       Run jshint on every files
+
             shop makefile                          Creates a Makefile or complete an existing one
 
           See the complete documentation at:
