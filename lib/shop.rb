@@ -8,5 +8,5 @@ require 'open-uri'
 require 'shop/command'
 
 module Shop
-  VERSION = '0.1.1'
+  VERSION = '0.1.2'
 end
