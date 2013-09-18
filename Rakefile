@@ -21,3 +21,7 @@ task :install do
 end
 
 task :inst => [:build, :install]
+
+task :publish do
+  system "gem push #{name}-#{version}.gem"
+end
