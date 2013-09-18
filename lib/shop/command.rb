@@ -81,18 +81,49 @@ module Shop
         done
       end
 
-      # Runs the Prestashop install cli
+      # Runs the Prestashop install CLI but with a nice prompt
+      #
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
-      # @todo
       def install
         # check if the framework is already installed
-        if !File.directory?('install-dev')
+        if !File.exists?('config/settings.inc.php')
           puts "PrestaShop appears to be already installed"
           exit
         end
 
-        puts "Preparing installation of PrestaShop"
+        puts "Please answer the following: "
 
+        entry = Hash.new
+
+        entry[:domain]      = ask('Domain: ')
+        entry[:db_name]     = ask('Database name: ')
+        entry[:db_server]   = ask('Database server: ') { |q| q.default = 'localhost' }
+        entry[:db_user]     = ask('Database user: ') { |q| q.default = 'root' }
+        entry[:db_password] = ask('Database password: ') { |q| q.default = '' }
+        entry[:country]     = ask('Country: ') { |q| q.default = 'fr' }
+        entry[:firstname]   = ask('Firstname: ')
+        entry[:lastname]    = ask('Lastname: ')
+        entry[:password]    = ask('Password: ') { |q| q.default = '0123456789' }
+        entry[:email]       = ask('Email: ')
+        entry[:newsletter]  = 0 # the PS default is to 1, but nobody wants spam
+
+        command = "php install-dev/index_cli.php "
+        command << "--domain=#{entry[:domain]} "
+        command << "--db_name=#{entry[:db_name]} "
+        command << "--db_server=#{entry[:db_server]} "
+        command << "--db_user=#{entry[:db_user]} "
+        command << "--db_password=#{entry[:db_password]} "
+        command << "--country=#{entry[:country]} "
+        command << "--firstname=#{entry[:firstname]} "
+        command << "--lastname=#{entry[:lastname]} "
+        command << "--password=#{entry[:password]} "
+        command << "--email=#{entry[:email]} "
+        command << "--newsletter=#{entry[:newsletter]} "
+
+        # run the php script
+        puts "Installing Prestashop please wait... "
+        system command
+        done
       end
 
       # Init the project
@@ -275,10 +306,12 @@ module Shop
       end
 
       # Prints all the command available
-      # @todo
       def help
         text = %{
           Shop v.#{Shop::VERSION} -------------------------------
+
+            shop new <directory>                   Download the framework
+            shop install                           Install Prestashop
 
             shop init                              Creates a Shop config file
 
@@ -297,7 +330,7 @@ module Shop
             shop jshint modules                    Run jshint on the theme and modules files
             shop jshint hard                       Run jshint on every files
 
-            shop makefile                          Creates a Makefile or complete an existing one
+            shop makefile                          Creates a Makefile or add tasks to an existing one
 
           See the complete documentation at:
           https://github.com/romainberger/shop
