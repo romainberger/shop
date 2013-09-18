@@ -81,15 +81,17 @@ module Shop
         done
       end
 
-      # Runs the Prestashop install cli
+      # Runs the Prestashop install CLI but with a nice prompt
+      #
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
-      # @todo
       def install
         # check if the framework is already installed
         if !File.directory?('install-dev')
           puts "PrestaShop appears to be already installed"
           exit
         end
+
+        puts "Please answer the following: "
 
         entry = Hash.new
 
@@ -118,7 +120,10 @@ module Shop
         command << "--email=#{entry[:email]} "
         command << "--newsletter=#{entry[:newsletter]} "
 
-
+        # run the php script
+        print "Installing Prestashop please wait... "
+        system command
+        done
       end
 
       # Init the project
