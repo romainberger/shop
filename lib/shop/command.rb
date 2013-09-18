@@ -311,6 +311,9 @@ module Shop
         text = %{
           Shop v.#{Shop::VERSION} -------------------------------
 
+            shop new <directory>                   Download the framework
+            shop install                           Install Prestashop
+
             shop init                              Creates a Shop config file
 
             shop module <name>                     Creates a new module
@@ -328,7 +331,7 @@ module Shop
             shop jshint modules                    Run jshint on the theme and modules files
             shop jshint hard                       Run jshint on every files
 
-            shop makefile                          Creates a Makefile or complete an existing one
+            shop makefile                          Creates a Makefile or add tasks to an existing one
 
           See the complete documentation at:
           https://github.com/romainberger/shop
