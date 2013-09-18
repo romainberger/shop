@@ -8,7 +8,7 @@ I always use Rakefiles and Makefiles for lots of tasks. With this gem you can us
 
 ## Installation
 
-    $ gem install shop
+    gem install shop
 
 Shop has been developed tested on OSX. I have no idea if this works on other platforms.
 
@@ -18,13 +18,13 @@ Shop has been developed tested on OSX. I have no idea if this works on other pla
 
 Creates a new Prestashop project with:
 
-    $ shop new <directory>
+    shop new <directory>
 
     # example:
-    $ shop new
+    shop new
     # Download the framework in the current directory
 
-    $ shop new new-store
+    shop new new-store
     # Download the framework in a new directory `new-store`
 
 Download the latest stable version of PrestaShop in the current directory or in a subdirectory if you provide the name as argument.
@@ -35,9 +35,9 @@ Download the latest stable version of PrestaShop in the current directory or in 
 
 Since 1.5.4 [PrestaShop provides a CLI](http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line) to install your PrestaShop. You can try to remember every arguments, or just use the Shop task and stay relatively sane (no offense to the PrestaShop developers but... come on).
 
-    # $ php install/cli.php --name=Romain --lol=whyamitypingallthis
+    # php install/cli.php --name=Romain --lol=whyamitypingallthis
     # nope
-    $ shop install
+    shop install
 
 **Note**: the install task actually runs the PrestaShop PHP CLI. It just makes you happier with a nice prompt.
 
@@ -45,28 +45,28 @@ Since 1.5.4 [PrestaShop provides a CLI](http://doc.prestashop.com/display/PS15/I
 
 For some tasks, Shop will need to know the name of the theme you're using. To do that you need to init the project with:
 
-    $ shop init <theme-name>
+    shop init <theme-name>
 
     # example:
-    $ shop init my-theme
+    shop init my-theme
 
 ### Overrides
 
 Creates overrides files for controllers and classes.
 
-    $ shop override <controller|class> <name> [admin]
+    shop override <controller|class> <name> [admin]
 
     # examples:
 
     # generate an override for the Product controller
-    $ shop override controller Product
+    shop override controller Product
 
     # by default the controller will be placed in override/controllers/admin. To create an override in
     # override/controllers/admin add the `admin` argument:
-    $ shop override controller AdminProducts admin
+    shop override controller AdminProducts admin
 
     # generate an override for the Product class
-    $ shop override class Product
+    shop override class Product
 
 ### Modules
 
@@ -74,35 +74,35 @@ Creates overrides files for controllers and classes.
 
 Creates a new module (with simple module boilerplate):
 
-    $ shop module <name>
+    shop module <name>
 
     # example:
-    $ shop module dinozaure
+    shop module dinozaure
 
 Creates a module template:
 
-    $ shop module template <module-name> <hook-name>
+    shop module template <module-name> <hook-name>
 
     # example:
-    $ shop module template blockcategories blockcategories
+    shop module template blockcategories blockcategories
 
 Creates a module css file in your theme:
 
-    $ shop module css <module-name>
+    shop module css <module-name>
 
     # example:
-    $ shop module css blockcategories
+    shop module css blockcategories
 
 ### Cache
 
 Cleans the css and js caches.
 
-    $ shop clean cache
+    shop clean cache
     # cleans the css and js caches
 
 When you create a new override for a controller or a class, the class index needs to be rewritten. You can call this task
 
-    $ shop clean class
+    shop clean class
     # clean the class index - automatically done when generating a new controller or class
 
 **Note**: The class index is automatically regenerated when you create an override with Shop. You probably won't need to run this command.
@@ -111,15 +111,15 @@ When you create a new override for a controller or a class, the class index need
 
 Run jshint on the theme's files.
 
-    $ shop jshint
+    shop jshint
 
 To run jshint on the theme's files and the modules' files, run it with the `modules` argument:
 
-    $ shop jshint modules
+    shop jshint modules
 
 To run jshint on **every** files run it with the `hard` argument (prepare yourself for a crapload of errors):
 
-    $ shop jshint hard
+    shop jshint hard
 
 ### Makefile
 
@@ -129,20 +129,20 @@ Okay I kinda lied. I still use a Makefile, but only for production servers, as t
 
 If you already use a Makefile, the tasks will be added to it. If you don't, it will create a Makefile.
 
-    $ shop makefile
+    shop makefile
 
 You can then use these tasks. Their effect are similar to the Shop tasks.
 
-    $ make clean-cache
+    make clean-cache
 
-    $ make clean-class
+    make clean-class
 
 
 ### Help
 
 You can get a list of the available commands with the help:
 
-    $ shop help
+    shop help
 
 # Who
 
