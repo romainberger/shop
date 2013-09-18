@@ -1,7 +1,5 @@
 # Shop
 
-**Project in early development, not everything is working for now**
-
 CLI for easier [PrestaShop](http://www.prestashop.com/en/) development. Actually it's just for the lazy people.
 
 I always use Rakefiles and Makefiles for lots of tasks. With this gem you can use these tasks without having to create any *akefiles.
