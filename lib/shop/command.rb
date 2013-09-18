@@ -121,7 +121,7 @@ module Shop
         command << "--newsletter=#{entry[:newsletter]} "
 
         # run the php script
-        print "Installing Prestashop please wait... "
+        puts "Installing Prestashop please wait... "
         system command
         done
       end
@@ -306,7 +306,6 @@ module Shop
       end
 
       # Prints all the command available
-      # @todo
       def help
         text = %{
           Shop v.#{Shop::VERSION} -------------------------------
