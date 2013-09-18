@@ -86,7 +86,7 @@ module Shop
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
       def install
         # check if the framework is already installed
-        if !File.directory?('install-dev')
+        if !File.exists?('config/settings.inc.php')
           puts "PrestaShop appears to be already installed"
           exit
         end
