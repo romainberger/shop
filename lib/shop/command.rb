@@ -3,6 +3,7 @@
 module Shop
   class Command
     class << self
+      include Shop::Color
 
       # Returns the theme name
       def theme
