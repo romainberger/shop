@@ -190,9 +190,6 @@ module Shop
             }
             content = template.template("module.php", values)
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
-              # content = File.read("#{template_path}/module.php")
-              # content = content.gsub("{{name_capitalize}}", "#{name}")
-              # content = content.gsub("{{name}}", "#{major}")
               f.write(content)
             end
           end
