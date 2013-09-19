@@ -68,6 +68,7 @@ Gem::Specification.new do |s|
     shop.gemspec
     lib/shop.rb
     lib/shop/command.rb
+    lib/shop/template.rb
     templates/Makefile
     templates/module.php
   ]

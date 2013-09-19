@@ -4,6 +4,10 @@ module Shop
   class Command
     class << self
 
+      def template
+        Template.new
+      end
+
       # Returns the theme name
       def theme
         if init?
@@ -12,12 +16,6 @@ module Shop
           puts "Project not initialized. Please run `shop init <theme-name>`"
           exit
         end
-      end
-
-      # Returns the path to the templates directory
-      def template_path
-        path = File.expand_path File.dirname(__FILE__)
-        "#{path}/../../templates"
       end
 
       def execute(*args)
@@ -186,11 +184,15 @@ module Shop
             return puts "Module #{major} already exists"
           else
             FileUtils.mkpath("modules/#{major}")
+            values = {
+              "name_capitalize" => major.capitalize,
+              "name" => major
+            }
+            content = template.template("module.php", values)
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
-              name = major.capitalize
-              content = File.read("#{template_path}/module.php")
-              content = content.gsub("{{name_capitalize}}", "#{name}")
-              content = content.gsub("{{name}}", "#{major}")
+              # content = File.read("#{template_path}/module.php")
+              # content = content.gsub("{{name_capitalize}}", "#{name}")
+              # content = content.gsub("{{name}}", "#{major}")
               f.write(content)
             end
           end
