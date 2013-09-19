@@ -280,8 +280,8 @@ module Shop
       # Create a Makefile or add some tasks to an existing one
       def makefile
         theme
-        content = File.read("#{template_path}/Makefile")
-        content = content.gsub("{{theme}}", "#{theme}")
+        datas = { 'theme' => theme}
+        content = template.template('Makefile', datas)
         if File.exists?("Makefile")
           File.open("Makefile", "a") do |f|
             f.write(content)
