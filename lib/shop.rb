@@ -7,6 +7,7 @@ require 'open-uri'
 
 require 'highline/import'
 
+require 'shop/template'
 require 'shop/command'
 
 module Shop
