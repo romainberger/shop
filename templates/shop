@@ -1,0 +1,15 @@
+module:
+    author:
+    tab:
+    logo:
+
+install:
+    db_server:
+    db_user:
+    db_password:
+    country:
+    firstname:
+    lastname:
+    password:
+    email:
+    newsletter:
