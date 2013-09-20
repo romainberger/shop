@@ -150,8 +150,8 @@ module Shop
       #
       # The project needs to be initialized
       def shopModule(major, minor, extra)
-        theme
         if major == 'template'
+          theme
           path = "themes/#{theme}/modules"
           FileUtils.mkpath(path) unless File.directory?(path)
 
@@ -166,6 +166,7 @@ module Shop
             File.open(filepath, "w") do; end
           end
         elsif major == 'css'
+          theme
           # css
           path = "themes/#{theme}/css/modules/#{minor}"
           FileUtils.mkpath(path) unless File.directory?(path)
