@@ -139,6 +139,10 @@ You can then use these tasks. Their effect are similar to the Shop tasks.
 You can get a list of the available commands with the help:
 
     shop help
+    
+## Configuration
+
+You can use a configuration file to automate some values in the templates files created (modules and for the installation of PrestaShop). You can find this file in `~/.shop`.
 
 ## Compatibility
 
