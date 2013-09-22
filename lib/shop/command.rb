@@ -4,6 +4,10 @@ module Shop
   class Command
     class << self
 
+      def template
+        Template.new
+      end
+
       # Returns the theme name
       def theme
         if init?
@@ -12,12 +16,6 @@ module Shop
           puts "Project not initialized. Please run `shop init <theme-name>`"
           exit
         end
-      end
-
-      # Returns the path to the templates directory
-      def template_path
-        path = File.expand_path File.dirname(__FILE__)
-        "#{path}/../../templates"
       end
 
       def execute(*args)
@@ -93,19 +91,29 @@ module Shop
 
         puts "Please answer the following: "
 
+        # Default values
+        config = ShopConfig.new
+        db_server = config.get('install', 'db_server', 'localhost')
+        db_user = config.get('install', 'db_user', 'root')
+        db_password = config.get('install', 'db_password')
+        country = config.get('install', 'country', 'fr')
+        firstname = config.get('install', 'firstname', false)
+        lastname = config.get('install', 'lastname', false)
+        password = config.get('install', 'password', '0123456789')
+        email = config.get('install', 'email', false)
+
         entry = Hash.new
 
         entry[:domain]      = ask('Domain: ')
         entry[:db_name]     = ask('Database name: ')
-        entry[:db_server]   = ask('Database server: ') { |q| q.default = 'localhost' }
-        entry[:db_user]     = ask('Database user: ') { |q| q.default = 'root' }
-        entry[:db_password] = ask('Database password: ') { |q| q.default = '' }
-        entry[:country]     = ask('Country: ') { |q| q.default = 'fr' }
-        entry[:firstname]   = ask('Firstname: ')
-        entry[:lastname]    = ask('Lastname: ')
-        entry[:password]    = ask('Password: ') { |q| q.default = '0123456789' }
-        entry[:email]       = ask('Email: ')
-        entry[:newsletter]  = 0 # the PS default is to 1, but nobody wants spam
+        entry[:db_server]   = ask('Database server: ') { |q| q.default = db_server }
+        entry[:db_user]     = ask('Database user: ') { |q| q.default = db_user }
+        entry[:db_password] = ask('Database password: ') { |q| q.default = db_password }
+        entry[:country]     = ask('Country: ') { |q| q.default = country }
+        entry[:firstname]   = ask('Firstname: ') { |q| q.default = firstname if firstname }
+        entry[:lastname]    = ask('Lastname: ') { |q| q.default = lastname if lastname }
+        entry[:password]    = ask('Password: ') { |q| q.default = password }
+        entry[:email]       = ask('Email: ') { |q| q.default = email if email }
 
         command = "php install-dev/index_cli.php "
         command << "--domain=#{entry[:domain]} "
@@ -118,7 +126,7 @@ module Shop
         command << "--lastname=#{entry[:lastname]} "
         command << "--password=#{entry[:password]} "
         command << "--email=#{entry[:email]} "
-        command << "--newsletter=#{entry[:newsletter]} "
+        command << "--newsletter=0"
 
         # run the php script
         puts "Installing Prestashop please wait... "
@@ -152,8 +160,8 @@ module Shop
       #
       # The project needs to be initialized
       def shopModule(major, minor, extra)
-        theme
         if major == 'template'
+          theme
           path = "themes/#{theme}/modules"
           FileUtils.mkpath(path) unless File.directory?(path)
 
@@ -168,6 +176,7 @@ module Shop
             File.open(filepath, "w") do; end
           end
         elsif major == 'css'
+          theme
           # css
           path = "themes/#{theme}/css/modules/#{minor}"
           FileUtils.mkpath(path) unless File.directory?(path)
@@ -186,12 +195,27 @@ module Shop
             return puts "Module #{major} already exists"
           else
             FileUtils.mkpath("modules/#{major}")
+            config = ShopConfig.new
+            values = {
+              "name_capitalize" => major.capitalize,
+              "name" => major,
+              "author" => config.get('module', 'author'),
+              "tab" => config.get('module', 'tab')
+            }
+            content = template.template("module.php", values)
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
-              name = major.capitalize
-              content = File.read("#{template_path}/module.php")
-              content = content.gsub("{{name_capitalize}}", "#{name}")
-              content = content.gsub("{{name}}", "#{major}")
               f.write(content)
+            end
+
+            # copy the logos
+            logo = config.get('module', 'logo')
+            if logo.length != 0
+              if File.exists?("#{logo}.png")
+                FileUtils.cp("#{logo}.png", "modules/#{major}/logo.png")
+              end
+              if File.exists?("#{logo}.gif")
+                FileUtils.cp("#{logo}.gif", "modules/#{major}/logo.gif")
+              end
             end
           end
         end
@@ -281,8 +305,8 @@ module Shop
       # Create a Makefile or add some tasks to an existing one
       def makefile
         theme
-        content = File.read("#{template_path}/Makefile")
-        content = content.gsub("{{theme}}", "#{theme}")
+        datas = { 'theme' => theme}
+        content = template.template('Makefile', datas)
         if File.exists?("Makefile")
           File.open("Makefile", "a") do |f|
             f.write(content)
