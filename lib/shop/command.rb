@@ -196,6 +196,17 @@ module Shop
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
               f.write(content)
             end
+
+            # copy the logos
+            logo = config.get('module', 'logo')
+            if logo.length != 0
+              if File.exists?("#{logo}.png")
+                FileUtils.cp("#{logo}.png", "modules/#{major}/logo.png")
+              end
+              if File.exists?("#{logo}.gif")
+                FileUtils.cp("#{logo}.gif", "modules/#{major}/logo.gif")
+              end
+            end
           end
         end
 
