@@ -5,13 +5,12 @@ module Shop
     # Returns the path to the templates directory
     #
     # Returns string
-    def template_path(name)
+    def template_path(name=false)
       path = File.expand_path File.dirname(__FILE__)
-      if name.nil?
-        "#{path}/../../templates"
-      else
-        "#{path}/../../templates/#{name}"
-      end
+
+      return "#{path}/../../templates/#{name}" if name
+
+      "#{path}/../../templates"
     end
 
     # Replace the placeholders by the variables
