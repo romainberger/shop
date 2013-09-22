@@ -40,6 +40,7 @@ module Shop
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+        return config                          if command == 'config'
 
         puts "\nCommand not found"
         return help
@@ -185,9 +186,12 @@ module Shop
             return puts "Module #{major} already exists"
           else
             FileUtils.mkpath("modules/#{major}")
+            config = ShopConfig.new
             values = {
               "name_capitalize" => major.capitalize,
-              "name" => major
+              "name" => major,
+              "author" => config.get('module', 'author'),
+              "tab" => config.get('module', 'tab')
             }
             content = template.template("module.php", values)
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
