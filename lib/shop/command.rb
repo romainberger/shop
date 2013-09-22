@@ -91,19 +91,29 @@ module Shop
 
         puts "Please answer the following: "
 
+        # Default values
+        config = ShopConfig.new
+        db_server = config.get('install', 'db_server', 'localhost')
+        db_user = config.get('install', 'db_user', 'root')
+        db_password = config.get('install', 'db_password')
+        country = config.get('install', 'country', 'fr')
+        firstname = config.get('install', 'firstname', false)
+        lastname = config.get('install', 'lastname', false)
+        password = config.get('install', 'password', '0123456789')
+        email = config.get('install', 'email', false)
+
         entry = Hash.new
 
         entry[:domain]      = ask('Domain: ')
         entry[:db_name]     = ask('Database name: ')
-        entry[:db_server]   = ask('Database server: ') { |q| q.default = 'localhost' }
-        entry[:db_user]     = ask('Database user: ') { |q| q.default = 'root' }
-        entry[:db_password] = ask('Database password: ') { |q| q.default = '' }
-        entry[:country]     = ask('Country: ') { |q| q.default = 'fr' }
-        entry[:firstname]   = ask('Firstname: ')
-        entry[:lastname]    = ask('Lastname: ')
-        entry[:password]    = ask('Password: ') { |q| q.default = '0123456789' }
-        entry[:email]       = ask('Email: ')
-        entry[:newsletter]  = 0 # the PS default is to 1, but nobody wants spam
+        entry[:db_server]   = ask('Database server: ') { |q| q.default = db_server }
+        entry[:db_user]     = ask('Database user: ') { |q| q.default = db_user }
+        entry[:db_password] = ask('Database password: ') { |q| q.default = db_password }
+        entry[:country]     = ask('Country: ') { |q| q.default = country }
+        entry[:firstname]   = ask('Firstname: ') { |q| q.default = firstname if firstname }
+        entry[:lastname]    = ask('Lastname: ') { |q| q.default = lastname if lastname }
+        entry[:password]    = ask('Password: ') { |q| q.default = password }
+        entry[:email]       = ask('Email: ') { |q| q.default = email if email }
 
         command = "php install-dev/index_cli.php "
         command << "--domain=#{entry[:domain]} "
@@ -116,7 +126,7 @@ module Shop
         command << "--lastname=#{entry[:lastname]} "
         command << "--password=#{entry[:password]} "
         command << "--email=#{entry[:email]} "
-        command << "--newsletter=#{entry[:newsletter]} "
+        command << "--newsletter=0"
 
         # run the php script
         puts "Installing Prestashop please wait... "
