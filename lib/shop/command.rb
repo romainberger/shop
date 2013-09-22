@@ -40,7 +40,6 @@ module Shop
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
-        return config                          if command == 'config'
 
         puts "\nCommand not found"
         return help
