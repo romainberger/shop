@@ -14,10 +14,18 @@ module Shop
     end
 
     # Returns the whole config or a specific value
-    def get(namespace=false, key=false)
+    #
+    # namespace - the namespace where the key is searched
+    # key - the key neede
+    # defaultValue - default value to return if the value is nil
+    def get(namespace = false, key = false, defaultValue = '')
       if namespace && key
         value = @config[namespace][key]
-        return value if !value.nil? else ''
+        if value
+          return value
+        else
+          return defaultValue
+        end
       end
 
       return @config if !@config.empty?
