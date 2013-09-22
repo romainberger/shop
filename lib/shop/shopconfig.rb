@@ -16,7 +16,8 @@ module Shop
     # Returns the whole config or a specific value
     def get(namespace=false, key=false)
       if namespace && key
-        return @config[namespace][key]
+        value = @config[namespace][key]
+        return value if !value.nil? else ''
       end
 
       return @config if !@config.empty?
