@@ -10,7 +10,8 @@ module Shop
         if init?
           return File.read('.shop')
         else
-          puts "#{red("Error")}: Project not initialized. Please run `shop init <theme-name>`"
+          puts "#{red("Error")}: Project not initialized."
+          puts "Please run #{cyan("shop init <theme-name>")}"
           exit
         end
       end
@@ -44,7 +45,7 @@ module Shop
         return version                         if command == "--version"
         return help                            if command == 'help'
 
-        puts "\nCommand not found"
+        puts "\n#{red("Error")}: Command not found"
         return help
       end
 
@@ -267,7 +268,7 @@ module Shop
       end
 
       def done
-        puts "#{cyan("✔ Done")}"
+        puts "#{green("✔ Done")}"
       end
 
       # Returns the version of Shop
