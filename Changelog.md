@@ -3,6 +3,7 @@
 
 ## Head
 - Add some colors
+- Add an `edit` command to edit the config file
 
 ## 0.1.5
 - Configuration file
