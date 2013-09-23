@@ -142,7 +142,12 @@ You can get a list of the available commands with the help:
 
 ## Configuration
 
-You can use a configuration file to automate some values in the templates files created (modules and for the installation of PrestaShop). You can find or create this file in `~/.shop`.
+You can use a configuration file to automate some values in the templates files created (modules and for the installation of PrestaShop).
+You can edit this file with the command
+
+    shop edit
+
+It will open the config file in your `$EDITOR`
 
 ## Compatibility
 
