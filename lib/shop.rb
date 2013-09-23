@@ -9,6 +9,7 @@ require 'yaml'
 require 'highline/import'
 
 require 'shop/template'
+require 'shop/color'
 require 'shop/command'
 require 'shop/shopconfig'
 
