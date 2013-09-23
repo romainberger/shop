@@ -39,6 +39,7 @@ module Shop
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
         return makefile                        if command == 'makefile'
+        return edit                            if command == 'edit'
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
@@ -324,6 +325,11 @@ module Shop
 
       def done
         puts "#{green("✔ Done")}"
+      end
+
+      def edit
+        config = ShopConfig.new
+        config.edit
       end
 
       # Returns the version of Shop
