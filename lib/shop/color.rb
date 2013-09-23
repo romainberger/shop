@@ -7,11 +7,11 @@ module Shop
 
     CODES = {
       :reset   => "\e[0m",
-
       :cyan    => "\e[36m",
       :magenta => "\e[35m",
       :red     => "\e[31m",
-      :yellow  => "\e[33m"
+      :yellow  => "\e[33m",
+      :green   => "\e[32m"
     }
 
     # Tries to enable Windows support if on that platform.
