@@ -329,7 +329,7 @@ module Shop
 
       def edit
         config = ShopConfig.new
-        config.edit
+        puts config.edit
       end
 
       # Returns the version of Shop
