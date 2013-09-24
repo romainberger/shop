@@ -11,6 +11,7 @@ require 'highline/import'
 require 'shop/template'
 require 'shop/color'
 require 'shop/command'
+require 'shop/platform'
 require 'shop/shopconfig'
 
 module Shop

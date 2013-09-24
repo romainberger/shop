@@ -71,6 +71,7 @@ Gem::Specification.new do |s|
     lib/shop/command.rb
     lib/shop/template.rb
     lib/shop/color.rb
+    lib/shop/platform.rb
     templates/Makefile
     templates/module.php
     templates/shop
