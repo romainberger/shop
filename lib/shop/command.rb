@@ -278,22 +278,32 @@ module Shop
         # make it work with or without controller:
         # i.e. Stuff or StuffController
 
+        # @todo
+        # if admin do not create the front files but create an admin template
         side = "front"
         if !minor.nil? && minor == "admin"
           side = "admin"
         end
 
-        name = major
-        controller_name = "#{major.capitalize}Controller.php"
-        controller_path = "controllers/#{side}/#{controller_name}"
+        name = major.downcase
+        controller_name = "#{name.capitalize}Controller"
+        filename = "#{controller_name}Controller.php"
+        controller_path = "controllers/#{side}/#{filename}"
 
         if File.exists?(controller_path)
           puts "#{red("Error")}: Controller already exists"
           exit
         end
 
-        # @todo use a template
-        File.open(controller_path, "w") do; end
+        datas = {
+          'controller_name' => controller_name,
+          'name' => name.downcase
+        }
+
+        content = template.template("controller.php", datas)
+        File.open(controller_path, "w") do |f|
+          f.write(content)
+        end
 
         files = [
           "themes/#{theme}/#{name}.tpl",

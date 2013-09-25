@@ -74,6 +74,7 @@ Gem::Specification.new do |s|
     lib/shop/platform.rb
     templates/Makefile
     templates/module.php
+    templates/controller.php
     templates/shop
   ]
   # = MANIFEST =
