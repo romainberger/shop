@@ -290,6 +290,9 @@ module Shop
           exit
         end
 
+        # @todo use a template
+        File.open(controller_path, "w") do; end
+
         files = [
           "themes/#{theme}/#{name}.tpl",
           "themes/#{theme}/css/#{name}.css",
