@@ -36,6 +36,7 @@ module Shop
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major, minor, extra)   if command == 'override'
+        return controller(major, minor)           if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
         return makefile                        if command == 'makefile'
@@ -257,6 +258,49 @@ module Shop
         File.open(path, 'w') do |f|
           f.write(content)
         end
+
+        done
+      end
+
+      # Creates a new page with controller and files associated
+      #
+      # @todo adapt this to work with PS 1.4 (needs a .php file in the root dir)
+      def controller(major, minor)
+        if major.nil?
+          puts "#{red("Error")}: Please provide a name for the new controller"
+          exit
+        end
+        theme
+
+        # @todo
+        # make it work with or without controller:
+        # i.e. Stuff or StuffController
+
+        side = "front"
+        if !minor.nil? && minor == "admin"
+          side = "admin"
+        end
+
+        name = major
+        controller_name = "#{major.capitalize}Controller.php"
+        controller_path = "controllers/#{side}/#{controller_name}"
+
+        if File.exists?(controller_path)
+          puts "#{red("Error")}: Controller already exists"
+          exit
+        end
+
+        files = [
+          "themes/#{theme}/#{name}.tpl",
+          "themes/#{theme}/css/#{name}.css",
+          "themes/#{theme}/js/#{name}.js"
+        ]
+
+        files.each do |f|
+          File.open(f, "w") do; end
+        end
+
+        clean("class")
 
         done
       end
