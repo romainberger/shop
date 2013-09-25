@@ -64,6 +64,15 @@ Creates overrides files for controllers and classes.
     # generate an override for the Product class
     shop override class Product
 
+### New Pages
+
+You can generate new pages for PrestaShop easily with the `controller` command. This will create the controller, template, CSS and JS files you need to create a new page.
+
+    shop controller <page-name>
+
+    # example:
+    shop controller CustomPage
+
 ### Modules
 
 **The modules related tasks will need the Shop project to be [initialized](https://github.com/romainberger/shop)**
