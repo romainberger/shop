@@ -259,6 +259,8 @@ module Shop
           f.write(content)
         end
 
+        clean("class")
+
         done
       end
 
