@@ -269,14 +269,10 @@ module Shop
       # @todo adapt this to work with PS 1.4 (needs a .php file in the root dir)
       def controller(major, minor)
         if major.nil?
-          puts "#{red("Error")}: Please provide a name for the new controller"
+          puts "#{red("Error")}: Please provide a name for the page"
           exit
         end
         theme
-
-        # @todo
-        # make it work with or without controller:
-        # i.e. Stuff or StuffController
 
         # @todo
         # if admin do not create the front files but create an admin template
