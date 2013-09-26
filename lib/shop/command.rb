@@ -35,7 +35,7 @@ module Shop
         return init(major)                     if command == 'init'
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
-        return override(major, minor, extra)   if command == 'override'
+        return override(major)                 if command == 'override'
         return controller(major, minor)        if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
@@ -267,24 +267,17 @@ module Shop
       # Creates a new page with controller and files associated
       #
       # @todo adapt this to work with PS 1.4 (needs a .php file in the root dir)
-      def controller(major, minor)
+      def controller(major)
         if major.nil?
           puts "#{red("Error")}: Please provide a name for the page"
           exit
         end
         theme
 
-        # @todo
-        # if admin do not create the front files but create an admin template
-        side = "front"
-        if !minor.nil? && minor == "admin"
-          side = "admin"
-        end
-
         name = major.downcase
         controller_name = "#{name.capitalize}Controller"
         filename = "#{controller_name}Controller.php"
-        controller_path = "controllers/#{side}/#{filename}"
+        controller_path = "controllers/front/#{filename}"
 
         if File.exists?(controller_path)
           puts "#{red("Error")}: Controller already exists"
