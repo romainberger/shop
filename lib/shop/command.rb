@@ -399,6 +399,9 @@ module Shop
             shop module template <name> <hook>     Creates a template for a given module / hook
             shop module css <name>                 Creates an override for a module css
 
+            shop controller <controller-name>      Creates a new page with a controller and
+                                                   assets needed
+
             shop override controller <name>        Creates an override for a controller
             shop override controller <name> admin  Creates an override for an admin controller
             shop override class <name>             Creates an override for a class
