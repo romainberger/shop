@@ -26,7 +26,9 @@ module Shop
           puts "PrestaShop does not seem to be installed"
           exit
         end
-        puts "good"
+
+        line = File.read("config/settings.inc.php")[/^\s*define\('_PS_VERSION_',\s*.*\)/]
+        line.match(/.*define\('_PS_VERSION_',\s*\s*['"](.*)['"]\)/)[1]
       end
 
       def execute(*args)
@@ -45,7 +47,7 @@ module Shop
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
         return override(major)                 if command == 'override'
-        return controller(major, minor)        if command == 'controller'
+        return controller(major)               if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
         return makefile                        if command == 'makefile'
