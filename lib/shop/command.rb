@@ -20,6 +20,15 @@ module Shop
         end
       end
 
+      # Returns the version of Prestashop installed
+      def psVersion
+        if !installed?
+          puts "PrestaShop does not seem to be installed"
+          exit
+        end
+        puts "good"
+      end
+
       def execute(*args)
         command = args.shift
         major   = args.shift
@@ -83,12 +92,16 @@ module Shop
         done
       end
 
+      # Returns if the framework is already installed
+      def installed?
+        File.exists?('config/settings.inc.php')
+      end
+
       # Runs the Prestashop install CLI but with a nice prompt
       #
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
       def install
-        # check if the framework is already installed
-        if File.exists?('config/settings.inc.php')
+        if installed?
           puts "PrestaShop appears to be already installed"
           exit
         end
