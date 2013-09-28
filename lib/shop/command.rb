@@ -288,21 +288,37 @@ module Shop
           exit
         end
         theme
+        version = psVersion
+        version = version[0, 3]
 
         name = major.downcase
         controller_name = "#{name.capitalize}Controller"
-        filename = "#{controller_name}Controller.php"
-        controller_path = "controllers/front/#{filename}"
+        filename = "#{controller_name}.php"
+        if version.to_f >= 1.5
+          controller_path = "controllers/front/#{filename}"
+        elsif version == "1.4"
+          controller_path = "controllers/#{filename}"
+        end
+
 
         if File.exists?(controller_path)
           puts "#{red("Error")}: Controller already exists"
           exit
         end
 
+        # datas for templates
         datas = {
           'controller_name' => controller_name,
           'name' => name.downcase
         }
+
+        # For PS 1.4 creates a php file a the root
+        if version[0, 3] == "1.4"
+            content = template.template("page.php", datas)
+            File.open("#{name.downcase}.php", "w") do |f|
+              f.write(content)
+            end
+        end
 
         content = template.template("controller.php", datas)
         File.open(controller_path, "w") do |f|
@@ -335,6 +351,11 @@ module Shop
             File.delete(f)
           end
         elsif major == 'class'
+          version = psVersion
+          if version[0, 3] == "1.4"
+            return
+          end
+
           print "Cleaning class index... "
           index = "cache/class_index.php"
           if File.exists?(index)
