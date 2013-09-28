@@ -20,6 +20,17 @@ module Shop
         end
       end
 
+      # Returns the version of Prestashop installed
+      def psVersion
+        if !installed?
+          puts "PrestaShop does not seem to be installed"
+          exit
+        end
+
+        line = File.read("config/settings.inc.php")[/^\s*define\('_PS_VERSION_',\s*.*\)/]
+        line.match(/.*define\('_PS_VERSION_',\s*\s*['"](.*)['"]\)/)[1]
+      end
+
       def execute(*args)
         command = args.shift
         major   = args.shift
@@ -35,7 +46,8 @@ module Shop
         return init(major)                     if command == 'init'
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
-        return override(major, minor, extra)   if command == 'override'
+        return override(major, major, extra)   if command == 'override'
+        return controller(major)               if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
         return makefile                        if command == 'makefile'
@@ -82,12 +94,16 @@ module Shop
         done
       end
 
+      # Returns if the framework is already installed
+      def installed?
+        File.exists?('config/settings.inc.php')
+      end
+
       # Runs the Prestashop install CLI but with a nice prompt
       #
       # See http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line
       def install
-        # check if the framework is already installed
-        if File.exists?('config/settings.inc.php')
+        if installed?
           puts "PrestaShop appears to be already installed"
           exit
         end
@@ -258,6 +274,72 @@ module Shop
           f.write(content)
         end
 
+        clean("class")
+
+        done
+      end
+
+      # Creates a new page with controller and files associated
+      #
+      # @todo adapt this to work with PS 1.4 (needs a .php file in the root dir)
+      def controller(major)
+        if major.nil?
+          puts "#{red("Error")}: Please provide a name for the page"
+          exit
+        end
+        theme
+        version = psVersion
+        version = version[0, 3]
+
+        name = major.downcase
+        controller_name = "#{name.capitalize}Controller"
+        filename = "#{controller_name}.php"
+        if version.to_f >= 1.5
+          controller_path = "controllers/front/#{filename}"
+        elsif version == "1.4"
+          controller_path = "controllers/#{filename}"
+        end
+
+
+        if File.exists?(controller_path)
+          puts "#{red("Error")}: Controller already exists"
+          exit
+        end
+
+        # datas for templates
+        datas = {
+          'controller_name' => controller_name,
+          'name' => name.downcase
+        }
+
+        # For PS 1.4 creates a php file a the root
+        # and use the appropriate template
+        if version[0, 3] == "1.4"
+            content = template.template("page.php", datas)
+            File.open("#{name.downcase}.php", "w") do |f|
+              f.write(content)
+            end
+            controllerContent = template.template("controller-1.4.php", datas)
+        else
+          controllerContent = template.template("controller.php", datas)
+        end
+
+        File.open(controller_path, "w") do |f|
+          f.write(controllerContent)
+        end
+
+        files = [
+          "themes/#{theme}/#{name}.tpl",
+          "themes/#{theme}/css/#{name}.css",
+          "themes/#{theme}/js/#{name}.js"
+        ]
+
+        files.each do |f|
+          File.open(f, "w") do; end
+        end
+
+        clean("class")
+
         done
       end
 
@@ -272,6 +354,11 @@ module Shop
             File.delete(f)
           end
         elsif major == 'class'
+          version = psVersion
+          if version[0, 3] == "1.4"
+            return
+          end
+
           print "Cleaning class index... "
           index = "cache/class_index.php"
           if File.exists?(index)
@@ -350,6 +437,9 @@ module Shop
             shop module <name>                     Creates a new module
             shop module template <name> <hook>     Creates a template for a given module / hook
             shop module css <name>                 Creates an override for a module css
+
+            shop controller <controller-name>      Creates a new page with a controller and
+                                                   assets needed
 
             shop override controller <name>        Creates an override for a controller
             shop override controller <name> admin  Creates an override for an admin controller
