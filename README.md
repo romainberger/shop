@@ -73,6 +73,8 @@ You can generate new pages for PrestaShop easily with the `controller` command. 
     # example:
     shop controller CustomPage
 
+This task is adapted to work on PrestaShop 1.5 and 1.4.
+
 ### Modules
 
 **The modules related tasks will need the Shop project to be [initialized](https://github.com/romainberger/shop)**
