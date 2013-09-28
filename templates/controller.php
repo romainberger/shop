@@ -1,6 +1,6 @@
 <?php
 
-class {{controller_name}}Core {
+class {{controller_name}}Core extends FrontController {
 
     public function setMedia() {
         parent::setMedia();
