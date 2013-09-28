@@ -313,16 +313,19 @@ module Shop
         }
 
         # For PS 1.4 creates a php file a the root
+        # and use the appropriate template
         if version[0, 3] == "1.4"
             content = template.template("page.php", datas)
             File.open("#{name.downcase}.php", "w") do |f|
               f.write(content)
             end
+            controllerContent = template.template("controller-1.4.php", datas)
+        else
+          controllerContent = template.template("controller.php", datas)
         end
 
-        content = template.template("controller.php", datas)
         File.open(controller_path, "w") do |f|
-          f.write(content)
+          f.write(controllerContent)
         end
 
         files = [
