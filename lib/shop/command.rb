@@ -46,7 +46,7 @@ module Shop
         return init(major)                     if command == 'init'
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
-        return override(major)                 if command == 'override'
+        return override(major, major, extra)   if command == 'override'
         return controller(major)               if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
