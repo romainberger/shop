@@ -104,13 +104,15 @@ Creates a module css file in your theme:
 
 Cleans the css and js caches.
 
-    shop clean cache
+    shop clean [cache]
     # cleans the css and js caches
 
 When you create a new override for a controller or a class, the class index needs to be rewritten. You can call this task
 
     shop clean class
     # clean the class index - automatically done when generating a new controller or class
+
+By default the `clean` task will clean the cache so you can just use `shop clean`.
 
 **Note**: The class index is automatically regenerated when you create an override with Shop. You probably won't need to run this command.
 
@@ -158,14 +160,15 @@ You can edit this file with the command
 
     shop edit
 
-It will open the config file in your `$EDITOR`
+It will open the config file in your `$EDITOR`. It's YAML so it shouldn't be scary.
 
 ## Compatibility
 
-Shop has been developed and tested on osx. It may not work on platforms other than *nix, particularly the `new` command that uses the unix `unzip` command. I plan on working on rewriting this part with only Ruby so it could work everywhere.
+Shop has been developed and tested on osx. It may not work on platforms other than *nix, particularly the `new` command that uses the unix `unzip` command. I plan on working on rewriting this part with only Ruby so it could work everywhere. I'm not going to try it on Windows so feel free to open issues (or even better, contribute) if you notice something not working as expected.
 
 ## Who
 
 By [Romain Berger](http://romainberger.com).
 Ping me at [@romain__berger](http://twitter.com/romain__berger) if you're having issues or create an issue.
+
 If you become billionaire with a shop made with the help of Shop you must buy me a beer.

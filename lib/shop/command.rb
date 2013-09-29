@@ -445,7 +445,7 @@ module Shop
             shop override controller <name> admin  Creates an override for an admin controller
             shop override class <name>             Creates an override for a class
 
-            shop clean cache                       Cleans the css and js caches
+            shop clean [cache]                     Cleans the css and js caches
             shop clean class                       Cleans the class index
 
             shop jshint                            Run jshint on the theme files
