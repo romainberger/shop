@@ -345,7 +345,7 @@ module Shop
 
       # Clean cache or class index
       def clean(major)
-        if major == 'cache'
+        if major.nil? || major == 'cache'
           theme
           files = Dir["themes/#{theme}/cache/*.css"]
           files = files + Dir["themes/#{theme}/cache/*.js"]

@@ -2,6 +2,7 @@
 ## Head
 
 ## Head
+- By default the clean task clean the cache
 
 ## 0.1.6
 - Add an `edit` command to edit the config file
