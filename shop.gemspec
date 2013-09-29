@@ -13,14 +13,15 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = 'shop'
-  s.version           = '0.1.6'
-  s.date              = '2013-09-23'
+  s.version           = '0.1.7'
+  s.date              = '2013-09-29'
   s.rubyforge_project = 'shop'
 
   ## Make sure your summary is short. The description may be as long
   ## as you like.
-  s.summary     = "CLI for easy Prestashop development"
-  s.description = "Because I'm too lazy to create files and type code"
+  s.summary     = "CLI for easy PrestaShop development"
+  s.description = "CLI for the lazy people working on PrestaShop so you don't
+  have to type."
 
   ## List the primary authors. If there are a bunch of authors, it's probably
   ## better to set the email to an email list or something. If you don't have
@@ -63,6 +64,7 @@ Gem::Specification.new do |s|
     Gemfile.lock
     LICENSE.md
     README.md
+    Changelog.md
     Rakefile
     bin/shop
     shop.gemspec
