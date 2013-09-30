@@ -454,6 +454,10 @@ module Shop
 
             shop makefile                          Creates a Makefile or add tasks to an existing one
 
+            shop edit                              Open the configuration file in your $EDITOR
+            shop help                              Output this help text
+            shop version                           Output the version of Shop you are using
+
           See the complete documentation at:
           https://github.com/romainberger/shop
 
