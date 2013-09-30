@@ -3,6 +3,7 @@
 
 ## Head
 - By default the clean task clean the cache
+- Add a `template` section to the configuration file so you can use custom templates
 
 ## 0.1.6
 - Add an `edit` command to edit the config file
