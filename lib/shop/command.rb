@@ -160,6 +160,7 @@ module Shop
           return puts "    $ shop init <theme-name>"
         end
 
+        puts "      #{green("create")} .shop"
         File.open('.shop', 'w') do |f|
           f.write(name)
         end
@@ -192,6 +193,7 @@ module Shop
             puts "#{red("Error:")} File already exists"
             exit
           else
+            puts "      #{green("create")} #{filepath}"
             File.open(filepath, "w") do; end
           end
         elsif major == 'css'
@@ -206,6 +208,7 @@ module Shop
             puts "#{red("Error:")} File already exists"
             exit
           elsif
+            puts "      #{green("create")} #{filepath}"
             File.open(filepath, "w") do; end
           end
         else
@@ -213,6 +216,7 @@ module Shop
           if File.directory?("modules/#{major}")
             return puts "Module #{major} already exists"
           else
+            puts "      #{green("create")} modules/#{major}"
             FileUtils.mkpath("modules/#{major}")
             config = ShopConfig.new
             values = {
@@ -222,6 +226,7 @@ module Shop
               "tab" => config.get('module', 'tab')
             }
             content = template.template("module.php", values)
+            puts "      #{green("create")} modules/#{major}/#{major}.php"
             File.open("modules/#{major}/#{major}.php", 'w') do |f|
               f.write(content)
             end
@@ -230,9 +235,11 @@ module Shop
             logo = config.get('module', 'logo')
             if logo.length != 0
               if File.exists?("#{logo}.png")
+                puts "      #{green("create")} modules/#{major}/logo.png"
                 FileUtils.cp("#{logo}.png", "modules/#{major}/logo.png")
               end
               if File.exists?("#{logo}.gif")
+                puts "      #{green("create")} modules/#{major}/logo.gif"
                 FileUtils.cp("#{logo}.gif", "modules/#{major}/logo.gif")
               end
             end
@@ -270,6 +277,7 @@ module Shop
           return puts "#{red("Error:")} You need to be at the root of your Prestashop site"
         end
 
+        puts "      #{green("create")} #{path}"
         File.open(path, 'w') do |f|
           f.write(content)
         end
@@ -316,6 +324,7 @@ module Shop
         # and use the appropriate template
         if version[0, 3] == "1.4"
             content = template.template("page.php", datas)
+            puts "      #{green("create")} #{name.downcase}.php"
             File.open("#{name.downcase}.php", "w") do |f|
               f.write(content)
             end
@@ -324,6 +333,7 @@ module Shop
           controllerContent = template.template("controller.php", datas)
         end
 
+        puts "      #{green("create")} #{controller_path}"
         File.open(controller_path, "w") do |f|
           f.write(controllerContent)
         end
@@ -335,6 +345,7 @@ module Shop
         ]
 
         files.each do |f|
+          puts "      #{green("create")} #{f}"
           File.open(f, "w") do; end
         end
 
@@ -403,6 +414,7 @@ module Shop
           end
         else
           File.open("Makefile", "w") do |f|
+            puts "      #{green("create")} Makefile"
             f.write(content)
           end
         end
@@ -411,7 +423,7 @@ module Shop
       end
 
       def done
-        puts "#{green("✔ Done")}"
+        puts "\n      #{green("✔ Done")}"
       end
 
       def edit
