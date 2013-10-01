@@ -188,7 +188,8 @@ module Shop
           path = "#{path}/#{minor}"
           FileUtils.mkpath(path) unless File.directory?(path)
 
-          filepath = "#{path}/#{extra}.tpl"
+          filepath = "#{path}/#{extra}"
+          filepath = "#{filepath}.tpl" unless filepath.match(/\.tpl$/)
           if File.exists?(filepath)
             puts "#{red("Error:")} File already exists"
             exit
@@ -202,7 +203,8 @@ module Shop
           path = "themes/#{theme}/css/modules/#{minor}"
           FileUtils.mkpath(path) unless File.directory?(path)
 
-          filepath = "#{path}/#{minor}.css"
+          filepath = "#{path}/#{minor}"
+          filepath = "#{filepath}.css" unless filepath.match(/\.css$/)
 
           if File.exists?(filepath)
             puts "#{red("Error:")} File already exists"
