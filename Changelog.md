@@ -1,5 +1,6 @@
 # Shop changelog
 ## Head
+- Creates the database in the `install` taskk
 
 ## 0.1.8
 - By default the clean task clean the cache
