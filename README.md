@@ -31,7 +31,7 @@ Download the latest stable version of PrestaShop in the current directory or in 
 
 ### Installation
 
-Since 1.5.4 [PrestaShop provides a CLI](http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line) to install your PrestaShop. You can try to remember every arguments, or just use the Shop task and stay relatively sane (no offense to the PrestaShop developers but... come on).
+Since 1.5.4 [PrestaShop provides a CLI](http://doc.prestashop.com/display/PS15/Installing+PrestaShop+using+the+command+line) to install your PrestaShop. You can try to remember every arguments, or just use the Shop task and stay relatively sane (no offense to the PrestaShop developers but... come on). The task will create the database if needed.
 
     # php install/cli.php --name=Romain --lol=whyamitypingallthis
     # nope
