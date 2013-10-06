@@ -147,8 +147,18 @@ module Shop
         command << "--email=#{entry[:email]} "
         command << "--newsletter=0"
 
+        # Creates the database if it doesn't exist
+        client = Mysql2::Client.new(
+          :host     => entry[:db_server],
+          :username => entry[:db_user],
+          :password => entry[:db_password]
+        )
+        puts "Creating the database..."
+        client.query("CREATE DATABASE IF NOT EXISTS `#{entry[:db_name]}`")
+        client.close()
+
         # run the php script
-        puts "Installing Prestashop please wait... "
+        puts "Installing Prestashop please wait..."
         system command
         done
       end
