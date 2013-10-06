@@ -4,6 +4,8 @@ CLI for easier [PrestaShop](http://www.prestashop.com/en/) development. Actually
 
 I always use Rakefiles and Makefiles for lots of tasks. With this gem you can use these tasks without having to create any *akefiles. For more infos about how and why see: [Introducing Shop](http://romainberger.com/2013/09/29/introducing-shop/).
 
+Shop has been developed to work with PrestaShop 1.5 and 1.4 (support for 1.6 will be added once it's realeased).
+
 ## Installation
 
     gem install shop
