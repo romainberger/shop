@@ -1,5 +1,6 @@
 # Shop changelog
 ## Head
+- Change template system to use `<%= %>` instead of `{{}}`
 
 ## 0.1.8
 - By default the clean task clean the cache
