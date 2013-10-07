@@ -14,4 +14,3 @@ PLATFORMS
 
 DEPENDENCIES
   shop!
-  highline (~> 1.6.19)

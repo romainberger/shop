@@ -1,6 +1,7 @@
 # Shop changelog
 ## Head
 - Change template system to use `<%= %>` instead of `{{}}`
+- Creates the database in the `install` taskk
 
 ## 0.1.8
 - By default the clean task clean the cache
