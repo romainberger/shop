@@ -40,7 +40,7 @@ module Shop
       content = File.read(file)
 
       datas.each do |k, v|
-        k = "{{#{k}}}"
+        k = "<%= #{k} %>"
         content = content.gsub(k, v)
       end
       return content

@@ -1,12 +1,12 @@
 <?php
 
-class {{name_capitalize}} extends Module {
+class <%= name_capitalize %> extends Module {
 
     public function __construct() {
-        $this->name = '{{name}}';
-        $this->tab = '{{tab}}';
+        $this->name = '<%= name %>';
+        $this->tab = '<%= tab %>';
         $this->version = 0.1;
-        $this->author = '{{author}}';
+        $this->author = '<%= author %>';
 
         parent::__construct();
 

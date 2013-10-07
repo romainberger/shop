@@ -10,5 +10,5 @@ clean-class:
 
 clean-cache:
 	@printf "Cleaning cache..."
-	-@rm themes/{{theme}}/cache/*.css themes/{{theme}}/cache/*.js 2>/dev/null || true
+	-@rm themes/<%= theme %>/cache/*.css themes/<%= theme %>/cache/*.js 2>/dev/null || true
 	@echo "                   ${CHECK}"
