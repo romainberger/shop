@@ -164,6 +164,10 @@ You can edit this file with the command
 
 It will open the config file in your `$EDITOR`. It's YAML so it shouldn't be scary.
 
+## Custom templates
+
+Some tasks generates files, using templates located in [/templates](https://github.com/romainberger/shop/tree/master/templates). You can override these files to use custom ones. See the [template readme for more infos](https://github.com/romainberger/shop/tree/master/templates).
+
 ## Compatibility
 
 Shop has been developed and tested on osx. It may not work on platforms other than *nix, particularly the `new` command that uses the unix `unzip` command. I plan on working on rewriting this part with only Ruby so it could work everywhere. I'm not going to try it on Windows so feel free to open issues (or even better, contribute) if you notice something not working as expected.
