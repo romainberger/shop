@@ -46,7 +46,7 @@ module Shop
         return init(major)                     if command == 'init'
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
-        return override(major, major, extra)   if command == 'override'
+        return override(major, minor, extra)   if command == 'override'
         return controller(major)               if command == 'controller'
         return clean(major)                    if command == 'clean'
         return jshint(major)                   if command == 'jshint'
@@ -65,11 +65,12 @@ module Shop
       def newProject(path)
         unless path.nil?
           FileUtils.mkpath(path)
+          puts "Creating new PrestaShop project in ./#{path}"
         else
           path = "./"
+          puts "Creating new PrestaShop project"
         end
 
-        puts "Please wait..."
         print "Downloading the framework... "
         url = 'https://github.com/PrestaShop/PrestaShop/archive/master.zip'
         open("master.zip", "wb") do |f|
@@ -264,6 +265,7 @@ module Shop
       # Creates an override for controllers and classes
       def override(major, minor, extra)
         name = minor.capitalize
+
         if major == 'controller'
           # controller
           if !extra.nil? && extra == 'admin'
@@ -275,7 +277,6 @@ module Shop
           name = "#{name}Controller"
           filename = "#{name}.php"
           path = "override/controllers/#{side}/#{filename}"
-
 
         elsif major == 'class'
           # class
