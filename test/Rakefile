@@ -1,0 +1,6 @@
+
+task :default => :test
+
+task :test do
+  system "rspec shop_spec.rb"
+end
