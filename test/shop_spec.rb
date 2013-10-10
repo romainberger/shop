@@ -13,3 +13,10 @@ describe Shop, "#psVersion" do
     version.should eq "1.5.5"
   end
 end
+
+describe Shop, "#install" do
+  it "should check if PS is installed" do
+    isInstalled = Shop::Command::installed?
+    isInstalled.should eq true
+  end
+end
