@@ -206,7 +206,7 @@ module Shop
             exit
           else
             puts "      #{green("create")} #{filepath}"
-            File.open(filepath, "w") do; end
+            File.open(filepath, "w")
           end
         elsif major == 'css'
           theme
@@ -222,7 +222,7 @@ module Shop
             exit
           elsif
             puts "      #{green("create")} #{filepath}"
-            File.open(filepath, "w") do; end
+            File.open(filepath, "w")
           end
         else
           # create a module
@@ -361,7 +361,7 @@ module Shop
 
         files.each do |f|
           puts "      #{green("create")} #{f}"
-          File.open(f, "w") do; end
+          File.open(f, "w")
         end
 
         clean("class")
@@ -390,7 +390,7 @@ module Shop
           if File.exists?(index)
             File.delete(index)
           end
-          File.open(index, "w") do; end
+          File.open(index, "w")
           # the file needs to be chmod'ed to 666
           File.chmod(0666, index)
         end
