@@ -398,7 +398,6 @@ module Shop
         done
       end
 
-
       # Run jshint
       def jshint(major)
         theme
