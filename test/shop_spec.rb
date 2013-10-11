@@ -1,4 +1,5 @@
 require 'shop'
+require 'fileutils'
 
 describe Shop, '#init' do
   after(:all) { File.delete(".shop") }
@@ -21,13 +22,22 @@ describe Shop, '#init' do
 end
 
 describe Shop, "#psVersion" do
+  before(:all) do
+    FileUtils.mkpath("config")
+    File.open("config/settings.inc.php", "w") do |f|
+      f.write("<?php\ndefine('_PS_VERSION_', '1.5.5');")
+    end
+  end
+
+  after(:all) do
+    FileUtils.rm_rf("config")
+  end
+
   it "should return the PS version" do
     version = Shop::Command::psVersion
     version.should eq "1.5.5"
   end
-end
 
-describe Shop, "#installed?" do
   it "should check if PS is installed" do
     isInstalled = Shop::Command::installed?
     isInstalled.should eq true
