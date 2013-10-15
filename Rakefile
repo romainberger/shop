@@ -29,5 +29,5 @@ task :publish do
 end
 
 task :test do
-  system "rspec test"
+  system "bundle exec rspec test"
 end
