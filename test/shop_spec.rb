@@ -45,14 +45,17 @@ describe Shop, "#psVersion" do
 end
 
 describe Shop, "#makefile" do
-  before { Shop::Command::init('theme_name')}
+  before do
+    Shop::Command::init('theme_name')
+    Shop::Command::makefile
+  end
+
   after do
     File.delete("Makefile")
     File.delete(".shop")
   end
 
   it "should create a Makefile" do
-    Shop::Command::makefile
     File.exists?('Makefile').should eq true
   end
 end
