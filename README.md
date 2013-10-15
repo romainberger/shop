@@ -1,4 +1,4 @@
-# Shop
+# Shop [![Build Status](https://secure.travis-ci.org/<username>/<repo>.png)](http://travis-ci.org/ngsmrk/comix_scraper)
 
 CLI for easier [PrestaShop](http://www.prestashop.com/en/) development. Actually it's just for the lazy people.
 
