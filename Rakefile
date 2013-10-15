@@ -1,6 +1,8 @@
 
 # Helper functions
 
+task :default => :test
+
 def name
   @name ||= Dir['*.gemspec'].first.split('.').first
 end
@@ -24,4 +26,8 @@ task :inst => [:build, :install]
 
 task :publish do
   system "gem push #{name}-#{version}.gem"
+end
+
+task :test do
+  system "rspec test"
 end
