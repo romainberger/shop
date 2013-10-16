@@ -6,4 +6,4 @@ _shop_complete() {
   COMPREPLY=( $(compgen -W "$completions" -- "$word") )
 }
 
-complete -f -F _shop_complete shop
+complete -F _shop_complete shop
