@@ -55,6 +55,7 @@ module Shop
         return version                         if command == "-v"
         return version                         if command == "--version"
         return help                            if command == 'help'
+        return complete(major)                 if command == 'cmplt'
 
         puts "\n#{red("Error")}: Command not found"
         return help
@@ -489,6 +490,26 @@ module Shop
 
         }.gsub(/^ {10}/, '')
         puts text
+      end
+
+      # Method for the autocompletion
+      def complete(word)
+        complete = %{
+          new
+          init
+          install
+          module
+          module template
+          override
+          override controller
+          override class
+          controller
+          clean
+          clean class
+          jshint
+          makefile
+        }
+        puts complete
       end
     end
   end
