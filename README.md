@@ -168,7 +168,7 @@ Some tasks generates files, using templates located in [/templates](https://gith
 
 ## Autocompletion
 
-To enable autocompletion with Shop, [see the doc](https://github.com/romainberger/shop/tree/master/completion)
+To enable autocompletion with Shop, [see the docs.](https://github.com/romainberger/shop/tree/master/completion)
 
 ## Compatibility
 
