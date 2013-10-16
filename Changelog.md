@@ -1,5 +1,8 @@
 # Shop changelog
+
 ## Head
+
+## 0.1.9
 - Change template system to use `<%= %>` instead of `{{}}`
 - Creates the database in the `install` task
 - Fuck yeah autocompletion

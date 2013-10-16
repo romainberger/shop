@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shop (0.1.8)
+    shop (0.1.9)
       highline (~> 1.6.19)
       mysql2
 
