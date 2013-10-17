@@ -1,4 +1,4 @@
-# Shop [![Build Status](https://secure.travis-ci.org/romainberger/shop.png)](http://travis-ci.org/romainberger/shop)
+# Shop [![Build Status](https://secure.travis-ci.org/romainberger/shop.png)](http://travis-ci.org/romainberger/shop) [![Gem Version](https://badge.fury.io/rb/shop.png)](http://badge.fury.io/rb/shop)
 
 CLI for easier [PrestaShop](http://www.prestashop.com/en/) development. Actually it's just for the lazy people.
 
