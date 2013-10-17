@@ -1,8 +1,11 @@
 require 'shop'
 require 'fileutils'
 
+path = File.expand_path File.dirname(__FILE__)
+path = "#{path}/../"
+
 describe Shop, '#init' do
-  after(:all) { File.delete(".shop") }
+  after(:all) { File.delete("#{path}.shop") }
 
   it "should create the local config file" do
     Shop::Command::init('theme_name')
@@ -47,15 +50,15 @@ end
 describe Shop, "#makefile" do
   before do
     Shop::Command::init('theme_name')
-    Shop::Command::makefile
   end
 
   after do
-    File.delete("Makefile")
-    File.delete(".shop")
+    File.delete("#{path}Makefile")
+    File.delete("#{path}.shop")
   end
 
   it "should create a Makefile" do
-    File.exists?('Makefile').should eq true
+    Shop::Command::makefile
+    File.exists?("#{path}Makefile").should eq true
   end
 end
