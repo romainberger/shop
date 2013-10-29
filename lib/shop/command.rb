@@ -402,18 +402,18 @@ module Shop
       # Run jshint
       def jshint(major)
         theme
-        files = Dir["themes/#{theme}/js/**/*.js"]
+        directory = Dir["themes/#{theme}"]
 
         if major == 'modules' || major == 'hard'
-          modules = Dir["modules/**/*.js"]
-          files = files + modules
+          modules = Dir["modules"]
+          directory = directory + modules
         end
         if major == 'hard'
-          prestashop = Dir["js/**/*.js"]
-          files = files + prestashop
+          prestashop = Dir["js"]
+          directory = directory + prestashop
         end
 
-        files.each do |f|
+        directory.each do |f|
           system "jshint #{f}"
         end
       end
