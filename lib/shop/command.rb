@@ -391,9 +391,6 @@ module Shop
           if File.exists?(index)
             File.delete(index)
           end
-          File.open(index, "w")
-          # the file needs to be chmod'ed to 666
-          File.chmod(0666, index)
         end
 
         done

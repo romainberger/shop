@@ -1,6 +1,8 @@
 # Shop changelog
 
 ## Head
+- improve jshint task to run on mobile theme
+- change `clean class-index` task to only remove the file - re-creating the file sometimes prevent the server to write it
 
 ## 0.1.9
 - Change template system to use `<%= %>` instead of `{{}}`
