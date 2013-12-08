@@ -1,5 +1,4 @@
 CHECK=✔ Done
-HR=--------------------------------------------------
 
 clean-class:
 	@sudo printf "Cleaning class index..."
