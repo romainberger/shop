@@ -7,7 +7,7 @@
 Gem::Specification.new do |s|
   s.specification_version = 2 if s.respond_to? :specification_version=
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.rubygems_version = '2.0.3'
+  s.rubygems_version = '2.1.1'
 
   ## Leave these as is they will be modified for you by the rake gemspec task.
   ## If your rubyforge_project name is different, then edit it and comment out
@@ -50,8 +50,7 @@ Gem::Specification.new do |s|
 
   ## List your runtime dependencies here. Runtime dependencies are those
   ## that are needed for an end user to actually USE your code.
-  s.add_dependency('highline', "~> 1.6.19")
-  s.add_dependency('mysql2')
+  s.add_dependency('highline', '~> 1.6.19')
 
   ## List your development dependencies here. Development dependencies are
   ## those that are only needed during development

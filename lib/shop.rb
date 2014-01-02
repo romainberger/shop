@@ -5,7 +5,6 @@ $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 require 'fileutils'
 require 'open-uri'
 require 'yaml'
-require 'mysql2'
 
 require 'highline/import'
 
