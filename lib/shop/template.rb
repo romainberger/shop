@@ -1,4 +1,3 @@
-
 module Shop
   class Template
 

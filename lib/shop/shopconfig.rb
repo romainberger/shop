@@ -1,4 +1,3 @@
-
 module Shop
   class ShopConfig
     CONFIG_FILE = "#{ENV['HOME']}/.shop"

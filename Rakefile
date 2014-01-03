@@ -1,4 +1,3 @@
-
 # Helper functions
 
 task :default => :test
