@@ -73,7 +73,7 @@ module Shop
         end
 
         print "Downloading the framework... "
-        url = 'https://github.com/PrestaShop/PrestaShop/archive/master.zip'
+        url = 'https://github.com/PrestaShop/PrestaShop/archive/1.5.zip'
         open("master.zip", "wb") do |f|
           f << open(url).read
         end
