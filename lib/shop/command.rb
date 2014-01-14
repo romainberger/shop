@@ -42,7 +42,7 @@ module Shop
       end
 
       def dispatch(command, major, minor, extra)
-        return newProject(major)               if command == 'new'
+        return newProject(major, minor)        if command == 'new'
         return init(major)                     if command == 'init'
         return install                         if command == 'install'
         return shopModule(major, minor, extra) if command == 'module'
@@ -63,7 +63,7 @@ module Shop
 
       # Download the framework in the current dir
       # or a creates a dir if an argument is given
-      def newProject(path)
+      def newProject(path, version)
         unless path.nil?
           FileUtils.mkpath(path)
           puts "Creating new PrestaShop project in ./#{path}"
@@ -72,8 +72,16 @@ module Shop
           puts "Creating new PrestaShop project"
         end
 
-        print "Downloading the framework... "
-        url = 'https://github.com/PrestaShop/PrestaShop/archive/1.5.zip'
+        version ||= "1.5"
+
+        if !["1.5", "1.6"].include?(version)
+          print "Wrong version #{version}"
+          exit
+        end
+
+        puts "Downloading the framework... "
+        print "Prestashop Version #{version}"
+        url = "https://github.com/PrestaShop/PrestaShop/archive/#{version}.zip"
         open("master.zip", "wb") do |f|
           f << open(url).read
         end
