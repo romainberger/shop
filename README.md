@@ -16,16 +16,24 @@ Shop has been developed to work with PrestaShop 1.5 and 1.4 (support for 1.6 wil
 
 Creates a new Prestashop project with:
 
-    shop new <directory>
+    shop new <directory> [version]
 
     # example:
     shop new
-    # Download the framework in the current directory
+    # Download the framework (stable version) in the current directory
 
     shop new new-store
     # Download the framework in a new directory `new-store`
 
-Download the latest stable version of PrestaShop in the current directory or in a subdirectory if you provide the name as argument.
+Download the latest stable version (1.5) of PrestaShop in the current directory or in a subdirectory if you provide the name as argument.
+
+Even if the 1.6 version is not out yet you can create new projects with this version by passing the version as an argument:
+
+    shop new 1.6
+    # Create a new project in the current directory with Prestashop 1.6
+
+    shop new new-store 1.6
+    # Create a new project in a new directory `new-store` with the version 1.6
 
 **Note**: Shop can work with an existing PrestaShop project, all you need is to initialize the Shop project (see [Initialization](https://github.com/romainberger/shop/#initialization) below)
 
