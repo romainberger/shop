@@ -63,7 +63,25 @@ module Shop
 
       # Download the framework in the current dir
       # or a creates a dir if an argument is given
-      def newProject(path, version)
+      def newProject(major, minor)
+        # Make sure these cases work:
+        # shop new directory 1.6
+        # shop new directory
+        # shop new 1.6
+        begin
+          version = Float(major)
+        rescue
+          path = major
+        end
+
+        if version.nil?
+          begin
+            version = Float(minor)
+          rescue
+            version = 1.5
+          end
+        end
+
         unless path.nil?
           FileUtils.mkpath(path)
           puts "Creating new PrestaShop project in ./#{path}"
