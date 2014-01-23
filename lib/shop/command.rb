@@ -70,6 +70,7 @@ module Shop
         # shop new 1.6
         begin
           version = Float(major)
+          version = String(version)
         rescue
           path = major
         end
@@ -77,8 +78,9 @@ module Shop
         if version.nil?
           begin
             version = Float(minor)
+            version = String(version)
           rescue
-            version = 1.5
+            version = "1.5"
           end
         end
 
@@ -99,7 +101,12 @@ module Shop
 
         puts "Downloading the framework... "
         print "Prestashop Version #{version}"
-        url = "https://github.com/PrestaShop/PrestaShop/archive/#{version}.zip"
+        if version == "1.6"
+          url = "https://github.com/PrestaShop/PrestaShop/archive/1.6.zip"
+        else
+          url = "https://github.com/PrestaShop/PrestaShop-1.5/archive/master.zip"
+        end
+
         open("master.zip", "wb") do |f|
           f << open(url).read
         end
