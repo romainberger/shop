@@ -1,8 +1,10 @@
 <?php
 
-class <%= controller_name %>Core extends FrontController {
+class <%= controller_name %>Core extends FrontController
+{
 
-    public function setMedia() {
+    public function setMedia()
+    {
         parent::setMedia();
 
         $this->addCSS(_THEME_CSS_DIR_.'<%= name %>.css');
@@ -13,7 +15,8 @@ class <%= controller_name %>Core extends FrontController {
      * Assign template vars related to page content
      * @see FrontController::initContent()
      */
-    public function initContent() {
+    public function initContent()
+    {
         parent::initContent();
 
         $this->setTemplate(_PS_THEME_DIR_.'<%= name %>.tpl');

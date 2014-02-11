@@ -1,8 +1,10 @@
 <?php
 
-class <%= name_capitalize %> extends Module {
+class <%= name_capitalize %> extends Module
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->name = '<%= name %>';
         $this->tab = '<%= tab %>';
         $this->version = 0.1;
@@ -14,7 +16,8 @@ class <%= name_capitalize %> extends Module {
         $this->description = $this->l('');
     }
 
-    public function install() {
+    public function install()
+    {
         parent::install();
     }
 
