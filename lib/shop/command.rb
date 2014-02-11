@@ -308,7 +308,7 @@ module Shop
           path = "override/classes/#{filename}"
         end
 
-        content = "<?php\n\nclass #{name} extends #{name}Core {\n\n}\n"
+        content = "<?php\n\nclass #{name} extends #{name}Core\n{\n\n}\n"
 
         if !File.directory?('override')
           return puts "#{red("Error:")} You need to be at the root of your Prestashop site"
