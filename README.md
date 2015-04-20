@@ -187,4 +187,4 @@ Shop has been developed and tested on osx. It may not work on platforms other th
 By [Romain Berger](http://romainberger.com).
 Ping me at [@romain__berger](http://twitter.com/romain__berger) if you're having issues or create an issue.
 
-If you become billionaire with a shop made with the help of Shop you must buy me a beer.
+If you become billionaire with a shop made with the help of Shop you can be cool and buy me a beer.
